@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 再见理想</title>
+  <title>再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
+  <meta name="description" content="原型模式原型模式概述原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口: 123456789101112public abst">
+<meta property="og:type" content="article">
 <meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/5.原型模式/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="原型模式原型模式概述原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口: 123456789101112public abst">
+<meta property="og:updated_time" content="2017-09-14T06:51:57.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:description" content="原型模式原型模式概述原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口: 123456789101112public abst">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -122,235 +123,175 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-5.原型模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><h2 id="原型模式概述"><a href="#原型模式概述" class="headerlink" title="原型模式概述"></a>原型模式概述</h2><p>原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public abstract class Prototype implements Cloneable&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected Prototype clone() &#123;</div><div class="line">        try &#123;</div><div class="line">            return (Prototype) super.clone();</div><div class="line">        &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>重写了clone方法后，所有继承Prototype类的类，都允许被拷贝了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Person extends Prototype &#123;</div><div class="line"></div><div class="line">    private String name;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Person pi = new Person();</div><div class="line">        pi.setName(&quot;zhaosi&quot;);</div><div class="line">        System.out.println(pi.hashCode());</div><div class="line">        Person pic = (Person) pi.clone();</div><div class="line">        System.out.println(pic.getName());</div><div class="line">        System.out.println(pic.hashCode());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行一下，结果如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1116759395</div><div class="line">zhaosi</div><div class="line">368076985</div></pre></td></tr></table></figure>
+<p>复制出来的对象与原对象的hashCode值不一样，Object类中的hashCode值是根据对象的内存地址经过哈希算法之后获取到的哈希码，所以hashCode不同，代表每个对象的内存地址不相同，也就是克隆出了一个对象，且对象的变量值也被克隆过来了。以上就是原型模式的实现。还需要注意的一点是，clone方法会拷贝对象中的基本数据类型与String的值，对于复杂数据结构，则只会拷贝引用地址。我们再来看一种情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">public abstract class Prototype implements Cloneable&#123;</div><div class="line"></div><div class="line">    private List&lt;String&gt; list;</div><div class="line"></div><div class="line">    public List&lt;String&gt; getList() &#123;</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setList(List&lt;String&gt; list) &#123;</div><div class="line">        this.list = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected Prototype clone() &#123;</div><div class="line">        try &#123;</div><div class="line">            Prototype prototype = (Prototype) super.clone();</div><div class="line">            return prototype;</div><div class="line">        &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Person extends Prototype &#123;</div><div class="line"></div><div class="line">    private String name;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Person pi = new Person();</div><div class="line">        pi.setName(&quot;zhaosi&quot;);</div><div class="line">        List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">        list.add(&quot;a&quot;);</div><div class="line">        pi.setList(list);</div><div class="line">        System.out.println(pi.hashCode());</div><div class="line">        System.out.println(pi.getList().hashCode());</div><div class="line">        Person pic = (Person) pi.clone();</div><div class="line">        System.out.println(pic.getName());</div><div class="line">        System.out.println(pic.hashCode());</div><div class="line">        System.out.println(pic.getList().hashCode());</div><div class="line">        System.out.println(pi.getList()==pic.getList());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们再来看看这个输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">304291381</div><div class="line">128</div><div class="line">zhaosi</div><div class="line">1066676960</div><div class="line">128</div><div class="line">true</div></pre></td></tr></table></figure>
+<p>最后一个输出值是<code>true</code>，也就意味着List这种复杂数据只是拷贝其数据的内存地址，这称为浅拷贝。如果我们想把<code>list</code>的值也拷贝过来，可以修改一下重写的clone方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected Prototype clone() &#123;</div><div class="line">    try &#123;</div><div class="line">        Prototype prototype = (Prototype) super.clone();</div><div class="line">        prototype.list = (List&lt;String&gt;) (((ArrayList&lt;String&gt;)this.list).clone());</div><div class="line">        return prototype;</div><div class="line">    &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">973777424</div><div class="line">128</div><div class="line">zhaosi</div><div class="line">304291381</div><div class="line">128</div><div class="line">false</div></pre></td></tr></table></figure>
+<p>最后一个的输出值变成了<code>false</code>，说明<code>list</code>也进行了值的拷贝，这种把对象所有的值都拷贝一份的方式称为深拷贝。</p>
+<p>细心的人可能发现了，拷贝出来的list的hashCode的值是一样的。我们看一下list的hashCode的实现源码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public int hashCode() &#123;</div><div class="line">    int hashCode = 1;</div><div class="line">    for (E e : this)</div><div class="line">        hashCode = 31*hashCode + (e==null ? 0 : e.hashCode());</div><div class="line">    return hashCode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以得出list的hashCode值是依赖其元素对象的，而上面的示例中list的元素对象是String，我们再来看String的hashCode的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public int hashCode() &#123;</div><div class="line">    int h = hash;</div><div class="line">    if (h == 0 &amp;&amp; value.length &gt; 0) &#123;</div><div class="line">        char val[] = value;</div><div class="line"></div><div class="line">        for (int i = 0; i &lt; value.length; i++) &#123;</div><div class="line">            h = 31 * h + val[i];</div><div class="line">        &#125;</div><div class="line">        hash = h;</div><div class="line">    &#125;</div><div class="line">    return h;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>String中的hashCode是根据String中包含的字符串获取的，根据哈希算法获取到一个哈希码，那么只要字符内容是相等的，hashCode也是相同的。</p>
+<p>如此一推算，拷贝出来的list的hashCode值就相同了！</p>
+<h2 id="原型模式应用"><a href="#原型模式应用" class="headerlink" title="原型模式应用"></a>原型模式应用</h2><p>clone方法是直接在内存中复制数据，因此不会调用到类的构造方法，甚至连访问权限都对原型模式无效，因此原型模式比直接new一个对象在性能上要好很多，特别是复制大对象时，性能的差别非常明显。但在实际应用中，我很少应用到原型模式，很遗憾，等以后在实际工作中使用了，再来与大家分享！</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/30/5.原型模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.942Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+    <a href="/2017/10/30/7.装饰器模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/30/1.单例模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -374,8 +315,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

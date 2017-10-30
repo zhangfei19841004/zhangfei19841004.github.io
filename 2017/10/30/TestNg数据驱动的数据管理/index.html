@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 再见理想</title>
+  <title>再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
+  <meta name="description" content="Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：  分类归纳 方便查看及维护 能够表征数据驱动时每一组数据  以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有">
+<meta property="og:type" content="article">
 <meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/10/30/TestNg数据驱动的数据管理/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：  分类归纳 方便查看及维护 能够表征数据驱动时每一组数据  以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有">
+<meta property="og:updated_time" content="2017-10-26T10:25:27.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:description" content="Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：  分类归纳 方便查看及维护 能够表征数据驱动时每一组数据  以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -122,235 +123,174 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-TestNg数据驱动的数据管理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：</p>
+<ol>
+<li>分类归纳</li>
+<li>方便查看及维护</li>
+<li>能够表征数据驱动时每一组数据</li>
+</ol>
+<p>以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有几个枚举常量就转变成几个对象，这一特征非常符合数据驱动的特点，于是我们将enum引入进来，把数据都放在enum中。</p>
+<blockquote>
+<p>定义一个pojo</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class TestInfo &#123;</div><div class="line">	</div><div class="line">	private String name;</div><div class="line">	</div><div class="line">	private int age;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestInfo [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>将pojo与enum结合</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">public class TestEnum &#123;</div><div class="line">	</div><div class="line">	public static TestInfo getTestInfo()&#123;</div><div class="line">		TestInfo ti = new TestInfo();</div><div class="line">		ti.setAge(18);</div><div class="line">		ti.setName(&quot;zhaosi&quot;);</div><div class="line">		return ti;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static TestInfo getTestInfo1()&#123;</div><div class="line">		TestInfo ti = new TestInfo();</div><div class="line">		ti.setAge(20);</div><div class="line">		ti.setName(&quot;zhangsan&quot;);</div><div class="line">		return ti;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public enum Demo&#123;</div><div class="line">		</div><div class="line">		TEST(&quot;http://www.baidu.com&quot;, TestEnum.getTestInfo(), &quot;//address&quot;, &quot;湖北&quot;),</div><div class="line">		</div><div class="line">		TEST1(&quot;http://www.baidu.com&quot;, TestEnum.getTestInfo1(), &quot;//address&quot;, &quot;湖北&quot;);</div><div class="line">		</div><div class="line">		private String url;</div><div class="line">		</div><div class="line">		private TestInfo testInfo;</div><div class="line">		</div><div class="line">		private String path;</div><div class="line">		</div><div class="line">		private String expectValue;</div><div class="line"></div><div class="line">		private Demo(String url, TestInfo testInfo, String path,</div><div class="line">				String expectValue) &#123;</div><div class="line">			this.url = url;</div><div class="line">			this.testInfo = testInfo;</div><div class="line">			this.path = path;</div><div class="line">			this.expectValue = expectValue;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getUrl() &#123;</div><div class="line">			return url;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public TestInfo getTestInfo() &#123;</div><div class="line">			return testInfo;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getPath() &#123;</div><div class="line">			return path;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getExpectValue() &#123;</div><div class="line">			return expectValue;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>TestNg的数据驱动</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class TestBase &#123;</div><div class="line">	</div><div class="line">    @DataProvider</div><div class="line">    public Object[][] dataProvider()&#123;</div><div class="line">		Class&lt;?&gt;[] cs = TestEnum.class.getDeclaredClasses();</div><div class="line">		Object[] ecs = null;</div><div class="line">		for (int i = 0; i &lt; cs.length; i++) &#123;</div><div class="line">			if(cs[i].isEnum())&#123;</div><div class="line">				ecs=cs[i].getEnumConstants();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		int count = 0;</div><div class="line">		if(ecs!=null)&#123;</div><div class="line">			count = ecs.length;</div><div class="line">		&#125;</div><div class="line">        Object[][] obj = new Object[count][];</div><div class="line">        for (int i = 0; i &lt; count; i++) &#123;</div><div class="line">            obj[i] = new Object[]&#123;ecs[i]&#125;;</div><div class="line">        &#125;</div><div class="line">        return obj;</div><div class="line">    &#125;</div><div class="line">      </div><div class="line">    @Test(dataProvider=&quot;dataProvider&quot;)</div><div class="line">    public void testDemo(Demo d)&#123;</div><div class="line">        System.out.println(d.getTestInfo());</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TestInfo [name=zhaosi, age=18]</div><div class="line">TestInfo [name=zhangsan, age=20]</div><div class="line">PASSED: testDemo(TEST)</div><div class="line">PASSED: testDemo(TEST1)</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明</p>
+</blockquote>
+<ol>
+<li>每一个枚举常量都支持任意的数据类型，可以很方便的进行扩展及集中式管理。</li>
+<li>以上只是提供了一种思路，如果要应用，细节方面还得再加强。</li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/10/30/TestNg数据驱动的数据管理/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.942Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/30/8.代理模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -374,8 +314,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

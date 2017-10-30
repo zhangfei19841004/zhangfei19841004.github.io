@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2017 | 再见理想</title>
+  <title>再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="努力让Java在测试领域中存活下去！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://yoursite.com/archives/2017/index.html">
+<meta property="og:url" content="http://yoursite.com/page/2/index.html">
 <meta property="og:site_name" content="再见理想">
 <meta property="og:description" content="努力让Java在测试领域中存活下去！">
 <meta name="twitter:card" content="summary">
@@ -124,232 +124,151 @@
           <div id="js-content" class="content-ll">
             
   
-  
+    <article id="post-Java接口测试培训大纲" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Java接口测试培训大纲"><a href="#Java接口测试培训大纲" class="headerlink" title="Java接口测试培训大纲"></a>Java接口测试培训大纲</h1><h3 id="1-java语法基础及数据类型"><a href="#1-java语法基础及数据类型" class="headerlink" title="1. java语法基础及数据类型"></a>1. java语法基础及数据类型</h3><ul>
+<li>java代码规范</li>
+<li>java程序输出”Hello world!”</li>
+<li>for while if的使用规则</li>
+<li>类和变量</li>
+<li>String字符串的基本方法</li>
+<li>基本数据类型</li>
+<li>Numbers类的使用方法</li>
+<li>基本运算符</li>
+</ul>
+<blockquote>
+<p>设计一个加减乘除功能的计算器。比如给定字符串”2+3*4-5”，输出值9。</p>
+</blockquote>
+<h3 id="2-java集合基本使用"><a href="#2-java集合基本使用" class="headerlink" title="2. java集合基本使用"></a>2. java集合基本使用</h3><ul>
+<li>数组基本使用</li>
+<li>list基本使用</li>
+<li>map基本使用</li>
+</ul>
+<blockquote>
+<ul>
+<li>将一个map转成”name=zf&amp;age=18”的字符串</li>
+<li>将字符串”name=zf&amp;age=18”转成map。建议使用字符串扫描，考虑字符串转义的情况，比如”name\=12=zf&amp;age=18”</li>
+<li>参加比赛的有16支球队，将这16支球队随机分为4个小组。使用list与随机数来实现</li>
+</ul>
+</blockquote>
+<h3 id="3-java异常处理"><a href="#3-java异常处理" class="headerlink" title="3. java异常处理"></a>3. java异常处理</h3><ul>
+<li>异常捕获</li>
+<li>java有几种异常类</li>
+<li>java读取txt文件</li>
+<li>java写入txt文件</li>
+<li>java递归读取某个文件夹下的所有文件名</li>
+</ul>
+<blockquote>
+<p>写出一个方法，给定一个路径，判断路径是否是一个文件，如果是文件，则把该文件的绝对路径输入到该文件中，如果是文件夹，则在该文件夹内创建创建一个与文件夹名相同的txt文件，比如如果文件夹名为a,则在a文件夹下创建一个a.txt文件，并在a.txt中输入a.txt的绝对路径。</p>
+</blockquote>
+<h3 id="4-Http概述"><a href="#4-Http概述" class="headerlink" title="4. Http概述"></a>4. Http概述</h3><ul>
+<li>Http基本概念</li>
+<li>Postman的基本使用</li>
+</ul>
+<blockquote>
+<ul>
+<li>在Postman中将url根据环境进行参数化。</li>
+<li>在Postman中用JS构造json格式的请求正文。</li>
+</ul>
+</blockquote>
+<h3 id="5-HttpClient的使用"><a href="#5-HttpClient的使用" class="headerlink" title="5. HttpClient的使用"></a>5. HttpClient的使用</h3><ul>
+<li>HttpURLConnection的使用</li>
+<li>HttpClient的使用</li>
+<li>HttpClient的简单工厂模式的封装</li>
+</ul>
+<blockquote>
+<p>用HttpClient去爬取<code>http://www.cnblogs.com/zhangfei/p/5454682.html</code>中的正文数据，建议使用字符串截取的方式来获取正文数据。</p>
+</blockquote>
+<h3 id="6-TestNg的基本使用"><a href="#6-TestNg的基本使用" class="headerlink" title="6. TestNg的基本使用"></a>6. TestNg的基本使用</h3><ul>
+<li>@Test </li>
+<li>@BeforeMethod @BeforeClass @AfterMethod @AfterClass</li>
+<li>testng.xml运行</li>
+<li>@DataProvider的使用</li>
+<li>@Parameters的使用</li>
+</ul>
+<blockquote>
+<p>了解TestNg中的TestListenerAdapter监听器的使用方法。</p>
+</blockquote>
+<h3 id="7-接口框架"><a href="#7-接口框架" class="headerlink" title="7. 接口框架"></a>7. 接口框架</h3><ul>
+<li>从0开始构建接口框架</li>
+</ul>
+<blockquote>
+<p>复习并掌握课堂中的接口框架代码。</p>
+</blockquote>
+<h3 id="8-接口实战"><a href="#8-接口实战" class="headerlink" title="8. 接口实战"></a>8. 接口实战</h3><ul>
+<li>接口文档</li>
+<li>接口MOCK</li>
+<li>接口特点</li>
+<li>接口用例</li>
+<li>接口监控</li>
+</ul>
+<blockquote>
+<p>掌握接口测试流程及方法并运用到实际项目中去。</p>
+</blockquote>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>一共8次课，每次课2-3个小时，每周末讲课。</li>
+<li>另会赠送我以前讲的selenium的视频</li>
+</ul>
+<h3 id="收费"><a href="#收费" class="headerlink" title="收费"></a>收费</h3><ul>
+<li>2000元/人</li>
+</ul>
+<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><ul>
+<li>QQ:408129370</li>
+</ul>
+<h3 id="个人作品"><a href="#个人作品" class="headerlink" title="个人作品:"></a>个人作品:</h3><ul>
+<li>博客地址：<a href="http://www.cnblogs.com/zhangfei/p/" target="_blank" rel="external">http://www.cnblogs.com/zhangfei/p/</a></li>
+<li>百度阅读：<a href="https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3" target="_blank" rel="external">https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3</a></li>
+<li>GITHUB : <a href="https://github.com/zhangfei19841004/zson" target="_blank" rel="external">https://github.com/zhangfei19841004/zson</a></li>
+<li>简书博客：<a href="http://www.jianshu.com/u/f2cc6e719af0" target="_blank" rel="external">http://www.jianshu.com/u/f2cc6e719af0</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.948Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/30/Java接口测试培训大纲/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.945Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.942Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+        
+        
+    </div>
+</aside>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.925Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/30/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-30T09:36:56.904Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
-  
-
-    
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2017/page/2/">2</a><a class="extend next" rel="next" href="/archives/2017/page/2/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
     </nav>
   
 
@@ -373,9 +292,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: false,
+		isHome: true,
 		isPost: false,
-		isArchive: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
