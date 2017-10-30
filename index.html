@@ -57,6 +57,8 @@
 			
 				<li><a href="/">主页</a></li>
 	        
+				<li><a href="/categories">categories</a></li>
+	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -95,6 +97,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -107,7 +111,9 @@
 				<ul style="width: 50%">
 				
 				
-					<li style="width: 100%"><a href="/">主页</a></li>
+					<li style="width: 50%"><a href="/">主页</a></li>
+		        
+					<li style="width: 50%"><a href="/categories">categories</a></li>
 		        
 				</ul>
 			</nav>
@@ -124,750 +130,120 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-TestNg数据驱动的数据管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Java接口测试培训大纲" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：</p>
-<ol>
-<li>分类归纳</li>
-<li>方便查看及维护</li>
-<li>能够表征数据驱动时每一组数据</li>
-</ol>
-<p>以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有几个枚举常量就转变成几个对象，这一特征非常符合数据驱动的特点，于是我们将enum引入进来，把数据都放在enum中。</p>
-<blockquote>
-<p>定义一个pojo</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class TestInfo &#123;</div><div class="line">	</div><div class="line">	private String name;</div><div class="line">	</div><div class="line">	private int age;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestInfo [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>将pojo与enum结合</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">public class TestEnum &#123;</div><div class="line">	</div><div class="line">	public static TestInfo getTestInfo()&#123;</div><div class="line">		TestInfo ti = new TestInfo();</div><div class="line">		ti.setAge(18);</div><div class="line">		ti.setName(&quot;zhaosi&quot;);</div><div class="line">		return ti;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static TestInfo getTestInfo1()&#123;</div><div class="line">		TestInfo ti = new TestInfo();</div><div class="line">		ti.setAge(20);</div><div class="line">		ti.setName(&quot;zhangsan&quot;);</div><div class="line">		return ti;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public enum Demo&#123;</div><div class="line">		</div><div class="line">		TEST(&quot;http://www.baidu.com&quot;, TestEnum.getTestInfo(), &quot;//address&quot;, &quot;湖北&quot;),</div><div class="line">		</div><div class="line">		TEST1(&quot;http://www.baidu.com&quot;, TestEnum.getTestInfo1(), &quot;//address&quot;, &quot;湖北&quot;);</div><div class="line">		</div><div class="line">		private String url;</div><div class="line">		</div><div class="line">		private TestInfo testInfo;</div><div class="line">		</div><div class="line">		private String path;</div><div class="line">		</div><div class="line">		private String expectValue;</div><div class="line"></div><div class="line">		private Demo(String url, TestInfo testInfo, String path,</div><div class="line">				String expectValue) &#123;</div><div class="line">			this.url = url;</div><div class="line">			this.testInfo = testInfo;</div><div class="line">			this.path = path;</div><div class="line">			this.expectValue = expectValue;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getUrl() &#123;</div><div class="line">			return url;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public TestInfo getTestInfo() &#123;</div><div class="line">			return testInfo;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getPath() &#123;</div><div class="line">			return path;</div><div class="line">		&#125;</div><div class="line"></div><div class="line">		public String getExpectValue() &#123;</div><div class="line">			return expectValue;</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>TestNg的数据驱动</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">public class TestBase &#123;</div><div class="line">	</div><div class="line">    @DataProvider</div><div class="line">    public Object[][] dataProvider()&#123;</div><div class="line">		Class&lt;?&gt;[] cs = TestEnum.class.getDeclaredClasses();</div><div class="line">		Object[] ecs = null;</div><div class="line">		for (int i = 0; i &lt; cs.length; i++) &#123;</div><div class="line">			if(cs[i].isEnum())&#123;</div><div class="line">				ecs=cs[i].getEnumConstants();</div><div class="line">			&#125;</div><div class="line">		&#125;</div><div class="line">		int count = 0;</div><div class="line">		if(ecs!=null)&#123;</div><div class="line">			count = ecs.length;</div><div class="line">		&#125;</div><div class="line">        Object[][] obj = new Object[count][];</div><div class="line">        for (int i = 0; i &lt; count; i++) &#123;</div><div class="line">            obj[i] = new Object[]&#123;ecs[i]&#125;;</div><div class="line">        &#125;</div><div class="line">        return obj;</div><div class="line">    &#125;</div><div class="line">      </div><div class="line">    @Test(dataProvider=&quot;dataProvider&quot;)</div><div class="line">    public void testDemo(Demo d)&#123;</div><div class="line">        System.out.println(d.getTestInfo());</div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>运行结果</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">TestInfo [name=zhaosi, age=18]</div><div class="line">TestInfo [name=zhangsan, age=20]</div><div class="line">PASSED: testDemo(TEST)</div><div class="line">PASSED: testDemo(TEST1)</div></pre></td></tr></table></figure>
-<blockquote>
-<p>说明</p>
-</blockquote>
-<ol>
-<li>每一个枚举常量都支持任意的数据类型，可以很方便的进行扩展及集中式管理。</li>
-<li>以上只是提供了一种思路，如果要应用，细节方面还得再加强。</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/TestNg数据驱动的数据管理/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
+      <header class="article-header">
         
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-8.代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h1><hr>
-<h2 id="代理模式概述"><a href="#代理模式概述" class="headerlink" title="代理模式概述"></a>代理模式概述</h2><p>假如你要想买二手房，你可能会想到去找中介，中介房源多，业务精通，会按照你的需求帮你买到心仪的房子，中介就是代理。在代码中，同样有这样的一种模式，只需要把类交给代理类，就可以实现这个类想要实现的一切，哪怕这个类只是个interface,里面的抽象方法照样可以被代理类按需求来实现及调用，这就是代理模式，所以代理模式中至关重要的一点就是代理类了，在Java中，分为静态代理与动态代理，而动态代理中比较有代表性的是JDK动态代理与cglib动态代理，大家可以自行查查各种代理的优劣势。下面是JDK动态代理的示例。</p>
-<p>JAVA的动态代理，在MYBATIS中应用的很广，其核心就是写一个interface,但不写实现类，然后用动态代理来实例化并执行这个interface中的方法，话不多说，来看一个实现的例子：</p>
-<blockquote>
-<p>先定义一个接口。JDK动态代理也称为接口代理，所以必须要有一个interface.</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface TestProxy &#123;</div><div class="line">     </div><div class="line">    String hello();</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>虽然不写实现类，但仍然希望在执行这个hello()方法时，能输出想要输出的内容，比如把希望要输出的内容放在一个属性文件中：test.properties</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hello=world</div></pre></td></tr></table></figure>
-<blockquote>
-<p>希望在调用hello方法时，输出world，接下来得解析这个属性文件：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class PropertiesHandler &#123;</div><div class="line">     </div><div class="line">     </div><div class="line">    private static Properties p = new Properties();</div><div class="line">     </div><div class="line">    static&#123;</div><div class="line">        try &#123;</div><div class="line">            InputStream in = PropertiesHandler.class.getClassLoader().getResourceAsStream(&quot;test.properties&quot;);</div><div class="line">            p.load(in);</div><div class="line">            in.close();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            throw new RuntimeException(&quot;test.properties load error!&quot;);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    public static String getProperty(String key)&#123;</div><div class="line">        try&#123;</div><div class="line">            return p.getProperty(key, null);</div><div class="line">        &#125;catch(Exception e)&#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return &quot;&quot;;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>解析完后，再写一个JDK动态代理类：(主角终于登场了)</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class ProxyImp&lt;T&gt; implements InvocationHandler&#123;</div><div class="line">     </div><div class="line">    private Class&lt;T&gt; proxyMethod;</div><div class="line"> </div><div class="line">    public ProxyImp(Class&lt;T&gt; proxyMethod) &#123;</div><div class="line">        this.proxyMethod = proxyMethod;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">    @Override</div><div class="line">    public Object invoke(Object proxy, Method method, Object[] args)throws Throwable &#123;</div><div class="line">        String value = PropertiesHandler.getProperty(method.getName());</div><div class="line">        System.out.println(value);</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其原理就是在调用接口类方法时，动态代理类都会去执行这个invoke方法，以达到执行的目的，可以看到，在invoke方法里，把hello方法在属性文件中对应的值给取出来了，并输出。</p>
-<blockquote>
-<p>接下来就是再封装一个代理工厂类来产生这个接口的一个实例：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public class ProxyImpFactory&#123;</div><div class="line">     </div><div class="line">    @SuppressWarnings(&quot;unchecked&quot;)</div><div class="line">    public static &lt;T&gt; T newInstance(Class&lt;T&gt; methodInterface) &#123;</div><div class="line">        final ProxyImp&lt;T&gt; proxyImp = new ProxyImp&lt;T&gt;(methodInterface);</div><div class="line">        return (T) Proxy.newProxyInstance(Thread.currentThread().getContextClassLoader(),</div><div class="line">                new Class[]&#123;methodInterface&#125;,</div><div class="line">                proxyImp);</div><div class="line">    &#125;</div><div class="line"> </div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以从上面的代码中看出这个代理类会自动的生成一个接口实现类的实例。</p>
-<blockquote>
-<p>接下来就是真正的调用了：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">public static void main(String[] args) &#123;</div><div class="line">    TestProxy tp = ProxyImpFactory.newInstance(TestProxy.class);</div><div class="line">    tp.hello();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出就是:<code>world</code></p>
-<p>以上就是JDK动态代理的示例过程，其实也就是代理类的应用，代理模式并没有什么特别的，其代表的是一种思想，我们需要做的就是理解这种思想。至于代理模式在测试开发中的应用，得大家自已去挖掘了。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/8.代理模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/30/Java接口测试培训大纲/">Java接口测试培训大纲</a>
+    </h1>
   
-    <article id="post-7.装饰器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+
+        
+        <a href="/2017/10/30/Java接口测试培训大纲/" class="archive-article-date">
+  	<time datetime="2017-10-30T07:26:45.933Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+</a>
+        
+      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="装饰器模式"><a href="#装饰器模式" class="headerlink" title="装饰器模式"></a>装饰器模式</h1><hr>
-<h2 id="装饰器模式概述"><a href="#装饰器模式概述" class="headerlink" title="装饰器模式概述"></a>装饰器模式概述</h2><p>尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：</p>
-<ol>
-<li>有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。</li>
-<li>被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。</li>
-<li>装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。</li>
-</ol>
-<p>用代码来实现这个过程：</p>
-<blockquote>
-<p>先定义好被装饰对象（书）的作用</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Book &#123;</div><div class="line"></div><div class="line">    void read();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>新书下发</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class MathBook implements Book &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始学习数学!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class EnglishBook implements Book &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始学习英语!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>开始包装新书：装饰后的对象（包上封皮的书）</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class PackagingBook implements Book &#123;</div><div class="line"></div><div class="line">    private Book book;</div><div class="line"></div><div class="line">    public PackagingBook(Book book) &#123;</div><div class="line">        this.book = book;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始包装!&quot;);</div><div class="line">        book.read();</div><div class="line">        System.out.println(&quot;结束包装!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>说明：</p>
-<ol>
-<li><code>PackagingBook implements Book</code>表明装饰后的书的作用不变。</li>
-<li><code>public PackagingBook(Book book)</code>该构造器表示被装饰对象是包含在装饰后的对象中的。</li>
-<li><code>book.read();</code>表示真正发挥作用的还是被装饰对象（书）。</li>
-</ol>
-<blockquote>
-<p>包装完后，使用</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Student &#123;</div><div class="line"></div><div class="line">    public void learn()&#123;</div><div class="line">        Book math = new PackagingBook(new MathBook());</div><div class="line">        math.read();</div><div class="line">        Book english = new PackagingBook(new EnglishBook());</div><div class="line">        english.read();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Student s = new Student();</div><div class="line">        s.learn();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>运行结果</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">开始包装!</div><div class="line">开始学习数学!</div><div class="line">结束包装!</div><div class="line">开始包装!</div><div class="line">开始学习英语!</div><div class="line">结束包装!</div></pre></td></tr></table></figure>
-<p>看到上面的使用方式，是不是很眼熟？Java的IO的实现全是用的装饰器模式！</p>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在用webdriver做UI时，来看一下官网提供的代码写法，即最原始的写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.findElement(By.id(&quot;kw&quot;)).click();</div></pre></td></tr></table></figure>
-<p>现在希望在click时，自动的输出log，但click是WebElement对象的方法，又没有接口，所以我们可以用装饰器模式，将WebElement对象进行装饰：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class ExtendWebElement &#123;</div><div class="line">     </div><div class="line">    private WebElement element;</div><div class="line"> </div><div class="line">    public void setElement(WebElement element) &#123;</div><div class="line">        this.element = element;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    public void click()&#123;</div><div class="line">        System.out.println(&quot;click the: &quot;+element.toString());</div><div class="line">        /**</div><div class="line">         * do something</div><div class="line">         */</div><div class="line">        element.click();</div><div class="line">        /**</div><div class="line">         * do something</div><div class="line">         */</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在使用时如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new ExtendWebElement(driver.findElement(By.id(&quot;kw&quot;))).click();</div></pre></td></tr></table></figure>
-<p>当然以上只是提供了一种思路，调用方法可以再进行封装，至于如何封装，这里先且不表，有兴趣的，可以一起讨论。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/7.装饰器模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-5.原型模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="原型模式"><a href="#原型模式" class="headerlink" title="原型模式"></a>原型模式</h1><h2 id="原型模式概述"><a href="#原型模式概述" class="headerlink" title="原型模式概述"></a>原型模式概述</h2><p>原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public abstract class Prototype implements Cloneable&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected Prototype clone() &#123;</div><div class="line">        try &#123;</div><div class="line">            return (Prototype) super.clone();</div><div class="line">        &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>重写了clone方法后，所有继承Prototype类的类，都允许被拷贝了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class Person extends Prototype &#123;</div><div class="line"></div><div class="line">    private String name;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Person pi = new Person();</div><div class="line">        pi.setName(&quot;zhaosi&quot;);</div><div class="line">        System.out.println(pi.hashCode());</div><div class="line">        Person pic = (Person) pi.clone();</div><div class="line">        System.out.println(pic.getName());</div><div class="line">        System.out.println(pic.hashCode());</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行一下，结果如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1116759395</div><div class="line">zhaosi</div><div class="line">368076985</div></pre></td></tr></table></figure>
-<p>复制出来的对象与原对象的hashCode值不一样，Object类中的hashCode值是根据对象的内存地址经过哈希算法之后获取到的哈希码，所以hashCode不同，代表每个对象的内存地址不相同，也就是克隆出了一个对象，且对象的变量值也被克隆过来了。以上就是原型模式的实现。还需要注意的一点是，clone方法会拷贝对象中的基本数据类型与String的值，对于复杂数据结构，则只会拷贝引用地址。我们再来看一种情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div></pre></td><td class="code"><pre><div class="line">public abstract class Prototype implements Cloneable&#123;</div><div class="line"></div><div class="line">    private List&lt;String&gt; list;</div><div class="line"></div><div class="line">    public List&lt;String&gt; getList() &#123;</div><div class="line">        return list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setList(List&lt;String&gt; list) &#123;</div><div class="line">        this.list = list;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    protected Prototype clone() &#123;</div><div class="line">        try &#123;</div><div class="line">            Prototype prototype = (Prototype) super.clone();</div><div class="line">            return prototype;</div><div class="line">        &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class Person extends Prototype &#123;</div><div class="line"></div><div class="line">    private String name;</div><div class="line"></div><div class="line">    public String getName() &#123;</div><div class="line">        return name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void setName(String name) &#123;</div><div class="line">        this.name = name;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Person pi = new Person();</div><div class="line">        pi.setName(&quot;zhaosi&quot;);</div><div class="line">        List&lt;String&gt; list = new ArrayList&lt;String&gt;();</div><div class="line">        list.add(&quot;a&quot;);</div><div class="line">        pi.setList(list);</div><div class="line">        System.out.println(pi.hashCode());</div><div class="line">        System.out.println(pi.getList().hashCode());</div><div class="line">        Person pic = (Person) pi.clone();</div><div class="line">        System.out.println(pic.getName());</div><div class="line">        System.out.println(pic.hashCode());</div><div class="line">        System.out.println(pic.getList().hashCode());</div><div class="line">        System.out.println(pi.getList()==pic.getList());</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>我们再来看看这个输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">304291381</div><div class="line">128</div><div class="line">zhaosi</div><div class="line">1066676960</div><div class="line">128</div><div class="line">true</div></pre></td></tr></table></figure>
-<p>最后一个输出值是<code>true</code>，也就意味着List这种复杂数据只是拷贝其数据的内存地址，这称为浅拷贝。如果我们想把<code>list</code>的值也拷贝过来，可以修改一下重写的clone方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">protected Prototype clone() &#123;</div><div class="line">    try &#123;</div><div class="line">        Prototype prototype = (Prototype) super.clone();</div><div class="line">        prototype.list = (List&lt;String&gt;) (((ArrayList&lt;String&gt;)this.list).clone());</div><div class="line">        return prototype;</div><div class="line">    &#125; catch (CloneNotSupportedException e) &#123;</div><div class="line">        e.printStackTrace();</div><div class="line">    &#125;</div><div class="line">    return null;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">973777424</div><div class="line">128</div><div class="line">zhaosi</div><div class="line">304291381</div><div class="line">128</div><div class="line">false</div></pre></td></tr></table></figure>
-<p>最后一个的输出值变成了<code>false</code>，说明<code>list</code>也进行了值的拷贝，这种把对象所有的值都拷贝一份的方式称为深拷贝。</p>
-<p>细心的人可能发现了，拷贝出来的list的hashCode的值是一样的。我们看一下list的hashCode的实现源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">public int hashCode() &#123;</div><div class="line">    int hashCode = 1;</div><div class="line">    for (E e : this)</div><div class="line">        hashCode = 31*hashCode + (e==null ? 0 : e.hashCode());</div><div class="line">    return hashCode;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>可以得出list的hashCode值是依赖其元素对象的，而上面的示例中list的元素对象是String，我们再来看String的hashCode的实现：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">public int hashCode() &#123;</div><div class="line">    int h = hash;</div><div class="line">    if (h == 0 &amp;&amp; value.length &gt; 0) &#123;</div><div class="line">        char val[] = value;</div><div class="line"></div><div class="line">        for (int i = 0; i &lt; value.length; i++) &#123;</div><div class="line">            h = 31 * h + val[i];</div><div class="line">        &#125;</div><div class="line">        hash = h;</div><div class="line">    &#125;</div><div class="line">    return h;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>String中的hashCode是根据String中包含的字符串获取的，根据哈希算法获取到一个哈希码，那么只要字符内容是相等的，hashCode也是相同的。</p>
-<p>如此一推算，拷贝出来的list的hashCode值就相同了！</p>
-<h2 id="原型模式应用"><a href="#原型模式应用" class="headerlink" title="原型模式应用"></a>原型模式应用</h2><p>clone方法是直接在内存中复制数据，因此不会调用到类的构造方法，甚至连访问权限都对原型模式无效，因此原型模式比直接new一个对象在性能上要好很多，特别是复制大对象时，性能的差别非常明显。但在实际应用中，我很少应用到原型模式，很遗憾，等以后在实际工作中使用了，再来与大家分享！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/5.原型模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1.单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><h2 id="什么是单例模式"><a href="#什么是单例模式" class="headerlink" title="什么是单例模式"></a>什么是单例模式</h2><p>单例模式具有如下的特征：</p>
-<ol>
-<li>单例类有且只能有一个实例。</li>
-<li>单例类必须是自己创建自己的唯一实例。</li>
-<li>单例类必须给所有其他对象提供这一实例。</li>
-</ol>
-<p>总结一句话：单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。</p>
-<h2 id="单例模式示例"><a href="#单例模式示例" class="headerlink" title="单例模式示例"></a>单例模式示例</h2><p>有人总结出了单例模式的多达7种写法，但我觉得测试人员不需要了解那么多，把常用的几种写法掌握并理解透彻就可以了。</p>
-<ol>
-<li>懒汉式<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">    //懒汉式</div><div class="line">    private static Singleton instance;</div><div class="line"></div><div class="line">    private Singleton()&#123;&#125;</div><div class="line"></div><div class="line">    public static synchronized Singleton getInstance()&#123;</div><div class="line">        if(instance == null)&#123;</div><div class="line">            instance = new Singleton();</div><div class="line">        &#125;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>懒汉式的写法因为用了synchronized，所以在性能上会有一点影响。</p>
-</blockquote>
-<ol>
-<li><p>饿汉式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">//饿汉式</div><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">    //饿汉式</div><div class="line">    private static Singleton instance = new Singleton();</div><div class="line"></div><div class="line">    private Singleton()&#123;&#125;</div><div class="line"></div><div class="line">    public static Singleton getInstance()&#123;</div><div class="line">        return instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>饿汉式的另一种写法</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Singleton &#123;</div><div class="line"></div><div class="line">    private static Singleton instance;</div><div class="line"></div><div class="line">    static &#123;</div><div class="line">        instance = new Singleton();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private Singleton()&#123;&#125;</div><div class="line"></div><div class="line">    public static Singleton getInstance()&#123;</div><div class="line">        return Singleton.instance;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<blockquote>
-<p>饿汉式的两种写法，从本质上来说是一样的，都是在类加载时就生成了对象，所以也不会有什么性能问题，但是如果有多个ClassLoader时，就会产生多个对象了，在测试开发中，应该不会有多个ClassLoader的情况出现。以上三种写法都满足了单例模式的三个特征。 作为测试人员，不考虑性能的前提下，推荐大家使用第三种写法。</p>
-</blockquote>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在用webdriver做ui自动化时，一般情况下，我们在脚本执行期间只会起一个driver实例，那么这里就比较适合用单例模式了，代码示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class SeleniumDriver &#123;</div><div class="line"></div><div class="line">    private static WebDriver driver;</div><div class="line">    </div><div class="line">    public static WebDriver getInstance()&#123;</div><div class="line">    	return driver;</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    private SeleniumDriver()&#123;&#125;</div><div class="line">    </div><div class="line">    static &#123;</div><div class="line">    	driver = new FirefoxDriver();</div><div class="line">    	driver.manage().window().maximize();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/1.单例模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3.抽象工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h1><h2 id="抽象工厂模式概述"><a href="#抽象工厂模式概述" class="headerlink" title="抽象工厂模式概述"></a>抽象工厂模式概述</h2><p>在讲简单工厂模式时，是一个工厂里有多条生产线，这多条生产线都是有相同的作用或同一个目标，比如这个工厂里有制造发动机和制造轮胎两条生产线，都是为了去装配汽车这一个目标。现在为了加强竞争力，多样化发展，提高生产力，提高产能，老板决定再引进两条生产线，也是制造发动机与制造轮胎的，我们把这四条生产线编上号：engine-01/tire-01/engine-02/tire-02，以前在装配时，只能是engine-01装配tire-01，现在既然产能提高了，那engine-01当然能装配tire-02了，这样才能真正提高生产力嘛，所以这四条生产线必须要能满足交叉装配，你看现在同一批手机，某康在装配时，就可能用的是不同的屏幕，不同的芯片。</p>
-<p>再回到简单工厂模式时HttpClient的三条生产线，我们编上号：get-01/postForm-01/postBody-01，此时，为了满足更多人的偏好，需要引入HttpUrlConnection，同样的也是三条生产线：get-02/postForm-02/postBody-02，假如你是这个工厂的管理者，你会如何管理这六条生产线？通常会有这样三种方案：</p>
-<ol>
-<li>将6条生产线放在一个车间里。</li>
-<li>将get-01/postForm-01/postBody-01这三条生产线放在1号车间里，get-02/postForm-02/postBody-02这三条生产线放在2号车间里。</li>
-<li>将get-01/get-02放在1号车间里，postForm-01/postForm-02放在2号车间里，postBody-01/postBody-02放在3号车间里。</li>
-</ol>
-<p>我们来分析一下这三种方案：</p>
-<ol>
-<li>将6条生产线放在一个车间里。</li>
-</ol>
-<blockquote>
-<p>这就是之前简单工厂模式，也满足交叉装配的特点，能符合生产要求。</p>
-</blockquote>
-<ol>
-<li>将get-01/postForm-01/postBody-01这三条生产线放在1号车间里，get-02/postForm-02/postBody-02这三条生产线放在2号车间里。</li>
-</ol>
-<blockquote>
-<p>这个方案是根据生产线的类型的分类的，但如果要交叉分配时，就不满足了，比如，想装配get-01/postForm-02/postBody-01时，从装配的角度来说，就不太方便了。</p>
-</blockquote>
-<ol>
-<li>将get-01/get-02放在1号车间里，postForm-01/postForm-02放在2号车间里，postBody-01/postBody-02放在3号车间里。</li>
-</ol>
-<blockquote>
-<p>这个方案是将具有完全相同功能的生产线放在一个车间里，然后将该车间里生产出来的产品集中放在一个地方，然后再进行自由交叉装配！</p>
-</blockquote>
-<p>注意一下方案3中的一句话”将该车间里生产出来的产品集中放在一个地方”，这就相当于把车间里的产品提取抽象出来并放在一个地方集中管理，这就是抽象工厂模式的概念。</p>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>我们来实现一下上面的方案3</p>
-<ul>
-<li>先限定每一个车间的生产线产品</li>
+        <h3 id="1-java语法基础及数据类型"><a href="#1-java语法基础及数据类型" class="headerlink" title="1. java语法基础及数据类型"></a>1. java语法基础及数据类型</h3><ul>
+<li>java代码规范</li>
+<li>java程序输出”Hello world!”</li>
+<li>for while if的使用规则</li>
+<li>类和变量</li>
+<li>String字符串的基本方法</li>
+<li>基本数据类型</li>
+<li>Numbers类的使用方法</li>
+<li>基本运算符</li>
 </ul>
 <blockquote>
-<p>GET：</p>
+<p>设计一个加减乘除功能的计算器。比如给定字符串”2+3*4-5”，输出值9。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpGetAbs &#123;</div><div class="line"></div><div class="line">    protected HttpFactoryAbs factory;</div><div class="line"></div><div class="line">    public HttpGetAbs(HttpFactoryAbs factory) &#123;</div><div class="line">        this.factory = factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract String execute(String url);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientGet extends HttpGetAbs &#123;</div><div class="line"></div><div class="line">    public HttpClientGet(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpClientInitial();</div><div class="line">        HttpGet httpGet = null;</div><div class="line">        try &#123;</div><div class="line">            httpGet = new HttpGet(url);</div><div class="line">            httpGet.setConfig(factory.getRequestConfig());</div><div class="line">            CloseableHttpResponse response = factory.getHttpClient().execute(httpGet);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpGet!=null)&#123;</div><div class="line">                httpGet.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            factory.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpUrlConnectionGet extends HttpGetAbs &#123;</div><div class="line"></div><div class="line">    public HttpUrlConnectionGet(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpUrlConnectionInitial(url, &quot;GET&quot;);</div><div class="line">        BufferedReader rd = null ;</div><div class="line">        StringBuilder sb = new StringBuilder ();</div><div class="line">        String line;</div><div class="line">        String response;</div><div class="line">        try &#123;</div><div class="line">            rd  = new BufferedReader( new InputStreamReader(factory.getHttpUrlConnection().getInputStream(), &quot;UTF-8&quot;));</div><div class="line">            while ((line = rd.readLine()) != null ) &#123;</div><div class="line">                sb.append(line);</div><div class="line">            &#125;</div><div class="line">            response = sb.toString();</div><div class="line">            return response;</div><div class="line">        &#125; catch (MalformedURLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(rd != null)&#123;</div><div class="line">                    rd.close();</div><div class="line">                &#125;</div><div class="line">                factory.disconnect();</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>POSTFORM：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpPostFormAbs &#123;</div><div class="line"></div><div class="line">    protected HttpFactoryAbs factory;</div><div class="line"></div><div class="line">    public HttpPostFormAbs(HttpFactoryAbs factory) &#123;</div><div class="line">        this.factory = factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract String execute(String url);</div><div class="line"></div><div class="line">    public abstract &lt;T&gt; HttpPostFormAbs setParams(T t);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostForm extends HttpPostFormAbs &#123;</div><div class="line"></div><div class="line">    private Map&lt;String, String&gt; params;</div><div class="line"></div><div class="line">    public HttpClientPostForm(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpClientInitial();</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(factory.getRequestConfig());</div><div class="line">            List&lt;NameValuePair&gt; ps = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">            for (String pKey : params.keySet()) &#123;</div><div class="line">                ps.add(new BasicNameValuePair(pKey, params.get(pKey)));</div><div class="line">            &#125;</div><div class="line">            httpPost.setEntity(new UrlEncodedFormEntity(ps));</div><div class="line">            CloseableHttpResponse response = factory.getHttpClient().execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            factory.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpPostFormAbs setParams(T t) &#123;</div><div class="line">        params = (Map&lt;String, String&gt;) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpUrlConnectionPostForm extends HttpPostFormAbs &#123;</div><div class="line"></div><div class="line">    private Map&lt;String, String&gt; params;</div><div class="line"></div><div class="line">    public HttpUrlConnectionPostForm(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpUrlConnectionInitial(url, &quot;POST&quot;);</div><div class="line">        BufferedWriter rw = null ;</div><div class="line">        BufferedReader rd = null ;</div><div class="line">        StringBuilder out = new StringBuilder();</div><div class="line">        StringBuilder sb = new StringBuilder();</div><div class="line">        String line;</div><div class="line">        String response = null;</div><div class="line">        for (String key : params.keySet()) &#123;</div><div class="line">            if(out.length()!=0)&#123;</div><div class="line">                out.append(&quot;&amp;&quot;);</div><div class="line">            &#125;</div><div class="line">            out.append(key).append(&quot;=&quot;).append(params.get(key));</div><div class="line">        &#125;</div><div class="line">        try &#123;</div><div class="line">            rw = new BufferedWriter(new OutputStreamWriter(factory.getHttpUrlConnection().getOutputStream(), &quot;UTF-8&quot;));</div><div class="line">            rw.write(out.toString());</div><div class="line">            rw.flush();</div><div class="line">            rd  = new BufferedReader( new InputStreamReader(factory.getHttpUrlConnection().getInputStream(), &quot;UTF-8&quot;));</div><div class="line">            while ((line = rd.readLine()) != null ) &#123;</div><div class="line">                sb.append(line);</div><div class="line">            &#125;</div><div class="line">            response = sb.toString();</div><div class="line">        &#125; catch (MalformedURLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(rw != null)&#123;</div><div class="line">                    rw.close();</div><div class="line">                &#125;</div><div class="line">                if(rd != null)&#123;</div><div class="line">                    rd.close();</div><div class="line">                &#125;</div><div class="line">                factory.disconnect();</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return response;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpPostFormAbs setParams(T t) &#123;</div><div class="line">        params = (Map&lt;String, String&gt;) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>POSTBODY：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpPostBodyAbs &#123;</div><div class="line"></div><div class="line">    protected HttpFactoryAbs factory;</div><div class="line"></div><div class="line">    public HttpPostBodyAbs(HttpFactoryAbs factory) &#123;</div><div class="line">        this.factory = factory;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract String execute(String url);</div><div class="line"></div><div class="line">    public abstract &lt;T&gt; HttpPostBodyAbs setParams(T t);</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostBody extends HttpPostBodyAbs &#123;</div><div class="line"></div><div class="line">    private String body;</div><div class="line"></div><div class="line">    public HttpClientPostBody(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpClientInitial();</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(factory.getRequestConfig());</div><div class="line">            httpPost.setEntity(new StringEntity(body));</div><div class="line">            CloseableHttpResponse response = factory.getHttpClient().execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            factory.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpPostBodyAbs setParams(T t) &#123;</div><div class="line">        body = (String) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpUrlConnectionPostBody extends HttpPostBodyAbs &#123;</div><div class="line"></div><div class="line">    private String body;</div><div class="line"></div><div class="line">    public HttpUrlConnectionPostBody(HttpFactoryAbs factory) &#123;</div><div class="line">        super(factory);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        factory.httpUrlConnectionInitial(url, &quot;POST&quot;);</div><div class="line">        BufferedWriter rw = null ;</div><div class="line">        BufferedReader rd = null ;</div><div class="line">        StringBuilder sb = new StringBuilder ();</div><div class="line">        String line;</div><div class="line">        String response = null;</div><div class="line">        try &#123;</div><div class="line">            rw = new BufferedWriter(new OutputStreamWriter(factory.getHttpUrlConnection().getOutputStream(), &quot;UTF-8&quot;));</div><div class="line">            rw.write(body);</div><div class="line">            rw.flush();</div><div class="line">            rd  = new BufferedReader( new InputStreamReader(factory.getHttpUrlConnection().getInputStream(), &quot;UTF-8&quot;));</div><div class="line">            while ((line = rd.readLine()) != null ) &#123;</div><div class="line">                sb.append(line);</div><div class="line">            &#125;</div><div class="line">            response = sb.toString();</div><div class="line">        &#125; catch (MalformedURLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(rw != null)&#123;</div><div class="line">                    rw.close();</div><div class="line">                &#125;</div><div class="line">                if(rd != null)&#123;</div><div class="line">                    rd.close();</div><div class="line">                &#125;</div><div class="line">                factory.disconnect();</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        return response;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpPostBodyAbs setParams(T t) &#123;</div><div class="line">        body = (String) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<ul>
-<li>车间建好后，再来建车间生产出来的产品集中存放的地方，也就是提取抽象出来的产品存放的地方：</li>
+<h3 id="2-java集合基本使用"><a href="#2-java集合基本使用" class="headerlink" title="2. java集合基本使用"></a>2. java集合基本使用</h3><ul>
+<li>数组基本使用</li>
+<li>list基本使用</li>
+<li>map基本使用</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpFactoryAbs &#123;</div><div class="line"></div><div class="line">    private CloseableHttpClient httpClient;</div><div class="line"></div><div class="line">    private RequestConfig requestConfig;</div><div class="line"></div><div class="line">    public CloseableHttpClient getHttpClient() &#123;</div><div class="line">        return httpClient;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public RequestConfig getRequestConfig() &#123;</div><div class="line">        return requestConfig;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void httpClientInitial()&#123;</div><div class="line">        httpClient = HttpClients.createDefault();</div><div class="line">        requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void close() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (httpClient != null) &#123;</div><div class="line">                httpClient.close();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private HttpURLConnection conn;</div><div class="line"></div><div class="line">    public HttpURLConnection getHttpUrlConnection() &#123;</div><div class="line">        return conn;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void httpUrlConnectionInitial(String url, String method)&#123;</div><div class="line">        try &#123;</div><div class="line">            conn = (HttpURLConnection) new URL(url).openConnection();</div><div class="line">            conn.setRequestMethod(method);</div><div class="line">            conn.setDoOutput(true);</div><div class="line">            conn.setDoInput(true);</div><div class="line">            conn.setReadTimeout(20000);</div><div class="line">            conn.setConnectTimeout(20000);</div><div class="line">            conn.setUseCaches(false);</div><div class="line">            conn.connect();</div><div class="line">        &#125; catch (ProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (MalformedURLException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void disconnect()&#123;</div><div class="line">        if(conn != null)&#123;</div><div class="line">            conn.disconnect();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract HttpGetAbs createHttpGet();</div><div class="line"></div><div class="line">    public abstract HttpPostFormAbs createHttpPostForm();</div><div class="line"></div><div class="line">    public abstract HttpPostBodyAbs createHttpPostBody();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
 <ul>
-<li>最后开始装配：</li>
+<li>将一个map转成”name=zf&amp;age=18”的字符串</li>
+<li>将字符串”name=zf&amp;age=18”转成map。建议使用字符串扫描，考虑字符串转义的情况，比如”name\=12=zf&amp;age=18”</li>
+<li>参加比赛的有16支球队，将这16支球队随机分为4个小组。使用list与随机数来实现</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class HttpFactory extends HttpFactoryAbs&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public HttpGetAbs createHttpGet() &#123;</div><div class="line">        return new HttpUrlConnectionGet(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public HttpPostFormAbs createHttpPostForm() &#123;</div><div class="line">        return new HttpUrlConnectionPostForm(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public HttpPostBodyAbs createHttpPostBody() &#123;</div><div class="line">        return new HttpUrlConnectionPostBody(this);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        HttpFactory hf = new HttpFactory();</div><div class="line">        String res = hf.createHttpGet().execute(&quot;http://101.200.48.144:8080/api/v3?username=zf&quot;);</div><div class="line">        System.out.println(res);</div><div class="line">        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();</div><div class="line">        params.put(&quot;username&quot;,&quot;zf&quot;);</div><div class="line">        params.put(&quot;password&quot;,&quot;123&quot;);</div><div class="line">        String res1 = hf.createHttpPostForm().setParams(params).execute(&quot;http://101.200.48.144:8080/api/v1&quot;);</div><div class="line">        System.out.println(res1);</div><div class="line">        String res2 = hf.createHttpPostBody().setParams(&quot;&#123;\&quot;username\&quot;:\&quot;zf\&quot;&#125;&quot;).execute(&quot;http://101.200.48.144:8080/api/v2&quot;);</div><div class="line">        System.out.println(res2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>这里只是演示了一种装配类型，如果要多种装配类型，则再写一个类并继承HttpFactoryAbs，然后重写里面的方法即可。</p>
 </blockquote>
-<p>总结：抽象工厂模式适合于多条生产线有完全相同的功能，并需要交叉装配的场景。其实简单工厂与抽象工厂之间的转换也是很不经易的，大家的共同目的都是产生对象，都是为了解耦，在写的过程中，<br>多加一个类或者减少一个类，就有可能从简单工厂变成了抽象工厂，也有可能从抽象工厂变成了简单工厂，都能实现需求，所以不必太刻意的追求简单工厂或抽象工厂，但需要提醒大家一点，在写代码之前，<br>先考虑好需要定义多少个类，类与类之间的关系，多在纸上画画，这样写出来的代码才能更”设计模式”。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/3.抽象工厂模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-4.Builder 模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Builder模式"><a href="#Builder模式" class="headerlink" title="Builder模式"></a>Builder模式</h1><h2 id="Builder模式概述"><a href="#Builder模式概述" class="headerlink" title="Builder模式概述"></a>Builder模式概述</h2><p>可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuilder sb = new StringBuilder();</div><div class="line">sb.append(&quot;a&quot;).append(&quot;b&quot;).append(&quot;c&quot;).append(&quot;d&quot;);</div></pre></td></tr></table></figure>
-<p>其实这种链式调用，就是Builder模式的应用，可以不断的往后面添加，我们来看看append方法的源码：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public StringBuilder append(String str) &#123;</div><div class="line">    super.append(str);</div><div class="line">    return this;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public AbstractStringBuilder append(String str) &#123;</div><div class="line">    if (str == null) str = &quot;null&quot;;</div><div class="line">    int len = str.length();</div><div class="line">    ensureCapacityInternal(count + len);</div><div class="line">    str.getChars(0, len, value, count);</div><div class="line">    count += len;</div><div class="line">    return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>顿时豁然开朗，原来Builder模式的精髓就在<code>return this;</code>，只有返回当前对象后，才能接着调用当前对象里的方法。</p>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在Java中，新建一个HashMap的对象并初始化，一般我们会这样做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line">map.put(&quot;a&quot;,&quot;1&quot;);</div><div class="line">map.put(&quot;b&quot;,&quot;2&quot;);</div><div class="line">map.put(&quot;c&quot;,&quot;3&quot;);</div></pre></td></tr></table></figure>
-<p>以上只是一个HashMap，就搞出了4行代码，如果要初始化的数据更多，那代码行数就会越来越多，太难看了，难怪别人会说Java太重。可能这时你会立刻想到链式调用，也就是Builder模式，我们来实现一下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class MapBuilder&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    public Map&lt;K, V&gt; map;</div><div class="line"></div><div class="line">    public MapBuilder() &#123;</div><div class="line">        map = new HashMap&lt;K, V&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MapBuilder&lt;K, V&gt; put(K k, V v) &#123;</div><div class="line">        map.put(k, v);</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public V get(K k)&#123;</div><div class="line">        return map.get(k);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        MapBuilder&lt;String, String&gt; builder = new MapBuilder&lt;String, String&gt;().put(&quot;a&quot;,&quot;1&quot;).put(&quot;b&quot;,&quot;2&quot;).put(&quot;c&quot;,&quot;3&quot;);</div><div class="line">        System.out.println(builder.get(&quot;a&quot;));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>代码行数由不可预知变成了一行了，这就到了可接受的范围了，再联想到之前介绍过的简单工厂模式，代码再次优化：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class MapperBuilder &#123;</div><div class="line"></div><div class="line">    public static &lt;K, V&gt; Builder&lt;K, V&gt; getBuilder()&#123;</div><div class="line">        return new Builder&lt;K, V&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static class Builder&lt;K, V&gt;&#123;</div><div class="line"></div><div class="line">        public Map&lt;K, V&gt; map;</div><div class="line"></div><div class="line">        private Builder()&#123;</div><div class="line">            map = new HashMap&lt;K, V&gt;();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public Builder&lt;K, V&gt; put(K k, V v)&#123;</div><div class="line">            map.put(k, v);</div><div class="line">            return this;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public Map&lt;K, V&gt; build()&#123;</div><div class="line">            return map;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Map&lt;String, String&gt; map = MapperBuilder.&lt;String, String&gt;getBuilder().put(&quot;a&quot;, &quot;a&quot;).put(&quot;b&quot;, &quot;b&quot;).build();</div><div class="line">        System.out.println(map);</div><div class="line"></div><div class="line">        Map&lt;Integer, Integer&gt; map1 = MapperBuilder.&lt;Integer, Integer&gt;getBuilder().put(1, 1).put(2, 2).build();</div><div class="line">        System.out.println(map1);</div><div class="line">        StringBuilder sb = new StringBuilder();</div><div class="line">        sb.append(&quot;a&quot;).append(&quot;b&quot;).append(&quot;c&quot;).append(&quot;d&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>一小段代码，里面竟然有两种设计模式，所以，代码无处不设计模式！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/4.Builder 模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2.简单工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h1><h2 id="简单工厂模式概述与示例"><a href="#简单工厂模式概述与示例" class="headerlink" title="简单工厂模式概述与示例"></a>简单工厂模式概述与示例</h2><p>一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test t = new Test();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这样写大家都会，如果很多地方都要用到Test类的实例，就需要写很多个<code>Test t = new Test();</code>，假如Test类发生更改（比如构造器或者变量产生了变动）,那么你需要将所有用到Test类的地方都更改一遍，维护量太大。如果将<code>new Test();</code>产生实例的放在一个地方管理，纵然Test类再发生更改，只要在这个地方进行相应的修改就行了，”这个地方”就是专门产生Test类实例的，类似于一个工厂，于是，工厂模式就产生了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class TestFactory &#123;</div><div class="line"></div><div class="line">    public static Test getInstance()&#123;</div><div class="line">        return new Test();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static class Test&#123;</div><div class="line"></div><div class="line">        private Test() &#123;&#125;</div><div class="line"></div><div class="line">        public void test()&#123;</div><div class="line">            System.out.println(&quot;this is test&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test t = TestFactory.getInstance();</div><div class="line">        t.test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>以上示例中可以看出，当要用到Test类实例时，只需要<code>TestFactory.getInstance();</code>就产生了一个实例，根本不会关心这个实例是如何产生的，也不会关心这个实例进行了哪些初始化，换言之，当你去吃披萨时，你只需要服务员准时把披萨给你端上桌，而不会去关心披萨上的培根是哪个国家生产的，也不会去关心做这个披萨的师傅的年纪有多大。总结：工厂模式就是产生实例的，但不会管是如何产生的。</p>
-<p>以上的示例中，工厂里只有一条生产线（只有一个Test类），这样资源太浪费了，要学会共享嘛，于是我们来建多条生产线，当然在一个工厂里的多条生产线必须要有<br>相同的作用或者同一个目标，你不可能在做披萨的厨房里去养猪吧。</p>
+<h3 id="3-java异常处理"><a href="#3-java异常处理" class="headerlink" title="3. java异常处理"></a>3. java异常处理</h3><ul>
+<li>异常捕获</li>
+<li>java有几种异常类</li>
+<li>java读取txt文件</li>
+<li>java写入txt文件</li>
+<li>java递归读取某个文件夹下的所有文件名</li>
+</ul>
 <blockquote>
-<p>限定生产线的作用域：</p>
+<p>写出一个方法，给定一个路径，判断路径是否是一个文件，如果是文件，则把该文件的绝对路径输入到该文件中，如果是文件夹，则在该文件夹内创建创建一个与文件夹名相同的txt文件，比如如果文件夹名为a,则在a文件夹下创建一个a.txt文件，并在a.txt中输入a.txt的绝对路径。</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public abstract class TestAbs &#123;</div><div class="line"></div><div class="line">    public abstract void test();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="4-Http概述"><a href="#4-Http概述" class="headerlink" title="4. Http概述"></a>4. Http概述</h3><ul>
+<li>Http基本概念</li>
+<li>Postman的基本使用</li>
+</ul>
 <blockquote>
-<p>多条生产线：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class Test extends TestAbs&#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">public class Test1 extends TestAbs&#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test1&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>工厂产生实例：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class TestFactory &#123;</div><div class="line"></div><div class="line">    public static TestAbs getInstance(String flag)&#123;</div><div class="line">        if(&quot;test&quot;.equals(flag))&#123;</div><div class="line">            return new Test();</div><div class="line">        &#125;else if(&quot;test1&quot;.equals(flag))&#123;</div><div class="line">            return new Test1();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        TestAbs t = TestFactory.getInstance(&quot;test1&quot;);</div><div class="line">        t.test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>这就是简单工厂模式的思路过程及实现。</p>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在接口测试中，可能要用到HttpClient，一般情况下，我们需要对三种请求进行处理：</p>
-<ol>
-<li>GET请求</li>
-<li>POST表单请求</li>
-<li>POST BODY请求</li>
-</ol>
-<blockquote>
-<p>如果对这三种请求不理解的，可以自行百度一下，这里不作赘述。</p>
-</blockquote>
-<p>我们来看一下HttpClient的请求怎么做：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">public class HttpClientUtil &#123;</div><div class="line"></div><div class="line">    public void get(String url)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpGet httpGet = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpGet = new HttpGet(url);</div><div class="line">            httpGet.setConfig(requestConfig);</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpGet);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpGet!=null)&#123;</div><div class="line">                    httpGet.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void post(String url, Map&lt;String, String&gt; params)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            List&lt;NameValuePair&gt; ps = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">            for (String pKey : params.keySet()) &#123;</div><div class="line">                ps.add(new BasicNameValuePair(pKey, params.get(pKey)));</div><div class="line">            &#125;</div><div class="line">            httpPost.setEntity(new UrlEncodedFormEntity(ps));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpPost!=null)&#123;</div><div class="line">                    httpPost.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void post(String url, String body)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            httpPost.setEntity(new StringEntity(body));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpPost!=null)&#123;</div><div class="line">                    httpPost.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>以上示例可以看出只需要把HttpGet/HttpPost与请求参数给抽象出来即可：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpClientAbs &#123;</div><div class="line"></div><div class="line">    protected CloseableHttpClient httpClient;</div><div class="line"></div><div class="line">    protected RequestConfig requestConfig;</div><div class="line"></div><div class="line">    public void close() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (httpClient != null) &#123;</div><div class="line">                httpClient.close();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public HttpClientAbs() &#123;</div><div class="line">        httpClient = HttpClients.createDefault();</div><div class="line">        requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract String execute(String url);</div><div class="line"></div><div class="line">    public abstract &lt;T&gt; HttpClientAbs setParams(T t);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>再定义HttpGet与HttpPost：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">public class HttpClientGet extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpGet httpGet = null;</div><div class="line">        try &#123;</div><div class="line">            httpGet = new HttpGet(url);</div><div class="line">            httpGet.setConfig(requestConfig);</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpGet);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpGet!=null)&#123;</div><div class="line">                httpGet.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostForm extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    private Map&lt;String, String&gt; params;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            List&lt;NameValuePair&gt; ps = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">            for (String pKey : params.keySet()) &#123;</div><div class="line">                ps.add(new BasicNameValuePair(pKey, params.get(pKey)));</div><div class="line">            &#125;</div><div class="line">            httpPost.setEntity(new UrlEncodedFormEntity(ps));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        params = (Map&lt;String, String&gt;) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostBody extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    private String body;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            httpPost.setEntity(new StringEntity(body));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        body = (String) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>最后再把多条生产线放进工厂中及调用示例：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public class HttpClientFactory &#123;</div><div class="line"></div><div class="line">    public static HttpClientAbs create(String flag)&#123;</div><div class="line">        if(&quot;get&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientGet();</div><div class="line">        &#125;else if(&quot;postForm&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientPostForm();</div><div class="line">        &#125;else if(&quot;postBody&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientPostBody();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String response = HttpClientFactory.create(&quot;get&quot;).execute(&quot;http://101.200.48.144:8080/api/v3?username=zf&quot;);</div><div class="line">        System.out.println(response);</div><div class="line">        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();</div><div class="line">        params.put(&quot;username&quot;,&quot;zf&quot;);</div><div class="line">        params.put(&quot;password&quot;,&quot;123&quot;);</div><div class="line">        String res1 = HttpClientFactory.create(&quot;postForm&quot;).setParams(params).execute(&quot;http://101.200.48.144:8080/api/v1&quot;);</div><div class="line">        System.out.println(res1);</div><div class="line">        String res2 = HttpClientFactory.create(&quot;postBody&quot;).setParams(&quot;&#123;\&quot;username\&quot;:\&quot;zf\&quot;&#125;&quot;).execute(&quot;http://101.200.48.144:8080/api/v2&quot;);</div><div class="line">        System.out.println(res2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>HttpClientFactory类我们可以再进行下优化，将create方法中的if给去掉：</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">public enum HttpClientRequest &#123;</div><div class="line"></div><div class="line">    GET(HttpClientGet.class),</div><div class="line"></div><div class="line">    POSTFORM(HttpClientPostForm.class),</div><div class="line"></div><div class="line">    POSTBODY(HttpClientPostBody.class);</div><div class="line"></div><div class="line">    private Class&lt;? extends HttpClientAbs&gt; clazz;</div><div class="line"></div><div class="line">    public Class&lt;? extends HttpClientAbs&gt; getClazz() &#123;</div><div class="line">        return clazz;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private HttpClientRequest(Class&lt;? extends HttpClientAbs&gt; clazz) &#123;</div><div class="line">        this.clazz = clazz;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static HttpClientAbs getHttpClientRequestInstance(HttpClientRequest request)&#123;</div><div class="line">        try &#123;</div><div class="line">            return request.getClazz().newInstance();</div><div class="line">        &#125; catch (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientFactory &#123;</div><div class="line"></div><div class="line">    public static HttpClientAbs create(HttpClientRequest request)&#123;</div><div class="line">        return HttpClientRequest.getHttpClientRequestInstance(request);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String response = HttpClientFactory.create(HttpClientRequest.GET).execute(&quot;http://101.200.48.144:8080/api/v3?username=zf&quot;);</div><div class="line">        System.out.println(response);</div><div class="line">        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();</div><div class="line">        params.put(&quot;username&quot;,&quot;zf&quot;);</div><div class="line">        params.put(&quot;password&quot;,&quot;123&quot;);</div><div class="line">        String res1 = HttpClientFactory.create(HttpClientRequest.POSTFORM).setParams(params).execute(&quot;http://101.200.48.144:8080/api/v1&quot;);</div><div class="line">        System.out.println(res1);</div><div class="line">        String res2 = HttpClientFactory.create(HttpClientRequest.POSTBODY).setParams(&quot;&#123;\&quot;username\&quot;:\&quot;zf\&quot;&#125;&quot;).execute(&quot;http://101.200.48.144:8080/api/v2&quot;);</div><div class="line">        System.out.println(res2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>从main方法中可以看出，原来Java的Http请求也可以写的这么优雅，这就是设计模式的魅力！</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/2.简单工厂模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-6.适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h1><h2 id="适配器模式概述"><a href="#适配器模式概述" class="headerlink" title="适配器模式概述"></a>适配器模式概述</h2><p>周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public interface CleanClassRoom &#123;</div><div class="line"></div><div class="line">    void cleanBlackboard();</div><div class="line"></div><div class="line">    void sweep();</div><div class="line"></div><div class="line">    void cleanFloor();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>任务明确后，A/B/C三个学生要开始分配任务了，A打扫并拖地区域1，且将黑板的左边部分擦干净，B打扫并拖地区域2，且将黑板的中间部分擦干净，C打扫并拖地区域3，且将黑板的右边部分擦干净。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">public class StudentA implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板左边擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板中间擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板右边擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>按照上面的分配，大家遵循这个规则，就可以将教室打扫的干干净净了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        a.cleanBlackboard();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        b.cleanBlackboard();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        c.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">黑板左边擦干净了</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">黑板中间擦干净了</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板右边擦干净了</div></pre></td></tr></table></figure>
-<p>但是在打扫的过程中，班长觉得大家太辛苦了，来帮大家一把，于是班长说：黑板我来擦吧！于是乎，这个规则被打破了，班长也要完成任务了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">public class ClassmateLeader implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentA implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        CleanClassRoom d = new ClassmateLeader();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        d.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板擦干净了</div></pre></td></tr></table></figure>
-<p>可以看到在StudentA/StudentB/StudentC三个类中，他们的cleanBlackboard方法里没做任何事情，显得有点冗余，但又不能去掉。转变一下思路，我们在班长擦黑板的基础上，再来将任务重新分配，这样每个人就不用去管擦黑板这个事情了：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">public class ClassmateLeader implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentA extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>TeacherCheck类不用更改，且运行结果也相同。</p>
-</blockquote>
-<p>A/B/C三个人都去适应班长，在班长的基础上再去完成任务，这就是适配器模式的思路及实现。当然假如班长是个漂亮女生，而A又暗恋班长，于是A说：班长，擦黑板的活我来干！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class StudentA extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板被A擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        a.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板被A擦干净了</div></pre></td></tr></table></figure>
-<p>通过以上的示例可以看出，适配器模式可以有更好的复用性，更好的扩展性。</p>
-<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在简单工厂模式中，将HttpClientAbs类改成适配器模式的写法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">public interface HttpClient &#123;</div><div class="line"></div><div class="line">    &lt;T&gt; HttpClientAbs setParams(T t);</div><div class="line"></div><div class="line">    String execute(String url);</div><div class="line"></div><div class="line">    void close();</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class HttpClientAbs implements HttpClient&#123;</div><div class="line"></div><div class="line">    protected CloseableHttpClient httpClient;</div><div class="line"></div><div class="line">    protected RequestConfig requestConfig;</div><div class="line"></div><div class="line">    public void close() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (httpClient != null) &#123;</div><div class="line">                httpClient.close();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public HttpClientAbs() &#123;</div><div class="line">        httpClient = HttpClients.createDefault();</div><div class="line">        requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/6.适配器模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-Webdriver的PageObject改造" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：</p>
-<blockquote>
-<p>自定义一个@FindBy注解</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">@Target(&#123; ElementType.FIELD &#125;)</div><div class="line">public @interface FindBy &#123;</div><div class="line">	</div><div class="line">	String name();</div><div class="line">	</div><div class="line">	int age();</div><div class="line">	</div><div class="line">	int lazy() default 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>定义一个TestInfo类来模拟WebElement类</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class TestInfo &#123;</div><div class="line">	</div><div class="line">	private String name;</div><div class="line">	</div><div class="line">	private int age;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestInfo [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>解析@FindBy注解</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class PageUtil &#123;</div><div class="line">	</div><div class="line">	private static void initialLazyInfo(Object obj, int lazy) &#123;</div><div class="line">		try&#123;</div><div class="line">			Field[] fields = obj.getClass().getDeclaredFields();</div><div class="line">			for (Field field : fields) &#123;</div><div class="line">				if(field.isAnnotationPresent(FindBy.class) &amp;&amp; field.getType().equals(TestInfo.class))&#123;</div><div class="line">					FindBy findBy = field.getAnnotation(FindBy.class);</div><div class="line">					if(findBy.lazy()==lazy)&#123;</div><div class="line">						TestInfo temp = new TestInfo();</div><div class="line">						temp.setName(findBy.name());</div><div class="line">						temp.setAge(findBy.age());</div><div class="line">						field.setAccessible(true);</div><div class="line">						field.set(obj, temp);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;catch(Exception e)&#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void initialLazy(Object obj)&#123;</div><div class="line">		PageUtil.initialLazyInfo(obj, 0);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void initialLazy(Object obj, int lazy)&#123;</div><div class="line">		PageUtil.initialLazyInfo(obj, lazy);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>使用方式</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class DemoPage &#123;</div><div class="line">	</div><div class="line">	public DemoPage() &#123;</div><div class="line">		PageUtil.initialLazy(this);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@FindBy(name=&quot;zf1&quot;, age=1)</div><div class="line">	private TestInfo info1;</div><div class="line">	</div><div class="line">	@FindBy(name=&quot;zf2&quot;, age=2, lazy=1)</div><div class="line">	private TestInfo info2;</div><div class="line">	</div><div class="line">	public void test()&#123;</div><div class="line">		System.out.println(&quot;info1 is: &quot; + info1);</div><div class="line">		System.out.println(&quot;info2 is: &quot; + info2);</div><div class="line">		PageUtil.initialLazy(this, 1);</div><div class="line">		System.out.println(&quot;info2 is: &quot; + info2);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		DemoPage dp = new DemoPage();</div><div class="line">		dp.test();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>运行结果</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">info1 is: TestInfo [name=zf1, age=1]</div><div class="line">info2 is: null</div><div class="line">info2 is: TestInfo [name=zf2, age=2]</div></pre></td></tr></table></figure>
-<blockquote>
-<p>说明</p>
-</blockquote>
 <ul>
-<li>将TestInfo初始化进行了分层次的初始化</li>
-<li>在需要用到的地方用<code>PageUtil.initialLazy(this, int);</code>进行初始化</li>
+<li>在Postman中将url根据环境进行参数化。</li>
+<li>在Postman中用JS构造json格式的请求正文。</li>
+</ul>
+</blockquote>
+<h3 id="5-HttpClient的使用"><a href="#5-HttpClient的使用" class="headerlink" title="5. HttpClient的使用"></a>5. HttpClient的使用</h3><ul>
+<li>HttpURLConnection的使用</li>
+<li>HttpClient的使用</li>
+<li>HttpClient的简单工厂模式的封装</li>
+</ul>
+<blockquote>
+<p>用HttpClient去爬取<code>http://www.cnblogs.com/zhangfei/p/5454682.html</code>中的正文数据，建议使用字符串截取的方式来获取正文数据。</p>
+</blockquote>
+<h3 id="6-TestNg的基本使用"><a href="#6-TestNg的基本使用" class="headerlink" title="6. TestNg的基本使用"></a>6. TestNg的基本使用</h3><ul>
+<li>@Test </li>
+<li>@BeforeMethod @BeforeClass @AfterMethod @AfterClass</li>
+<li>testng.xml运行</li>
+<li>@DataProvider的使用</li>
+<li>@Parameters的使用</li>
+</ul>
+<blockquote>
+<p>了解TestNg中的TestListenerAdapter监听器的使用方法。</p>
+</blockquote>
+<h3 id="7-接口框架"><a href="#7-接口框架" class="headerlink" title="7. 接口框架"></a>7. 接口框架</h3><ul>
+<li>从0开始构建接口框架</li>
+</ul>
+<blockquote>
+<p>复习并掌握课堂中的接口框架代码。</p>
+</blockquote>
+<h3 id="8-接口实战"><a href="#8-接口实战" class="headerlink" title="8. 接口实战"></a>8. 接口实战</h3><ul>
+<li>接口文档</li>
+<li>接口MOCK</li>
+<li>接口特点</li>
+<li>接口用例</li>
+<li>接口监控</li>
+</ul>
+<blockquote>
+<p>掌握接口测试流程及方法并运用到实际项目中去。</p>
+</blockquote>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
+<li>一共8次课，每次课2-3个小时，每周末讲课。</li>
+<li>另会赠送我以前讲的selenium的视频</li>
+</ul>
+<h3 id="收费"><a href="#收费" class="headerlink" title="收费"></a>收费</h3><ul>
+<li>2000元/人</li>
+</ul>
+<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><ul>
+<li>QQ:408129370</li>
+</ul>
+<h3 id="个人作品"><a href="#个人作品" class="headerlink" title="个人作品:"></a>个人作品:</h3><ul>
+<li>博客地址：<a href="http://www.cnblogs.com/zhangfei/p/" target="_blank" rel="external">http://www.cnblogs.com/zhangfei/p/</a></li>
+<li>百度阅读：<a href="https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3" target="_blank" rel="external">https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3</a></li>
+<li>GITHUB : <a href="https://github.com/zhangfei19841004/zson" target="_blank" rel="external">https://github.com/zhangfei19841004/zson</a></li>
+<li>简书博客：<a href="http://www.jianshu.com/u/f2cc6e719af0" target="_blank" rel="external">http://www.jianshu.com/u/f2cc6e719af0</a></li>
 </ul>
 
       
@@ -878,10 +254,21 @@
       
       
       
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/service//" class="article-tag-list-link color4">Java测试服务</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/Webdriver的PageObject改造/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/10/30/Java接口测试培训大纲/">展开全文 >></a>
         </p>
       
 
@@ -911,10 +298,6 @@
 
 
   
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
