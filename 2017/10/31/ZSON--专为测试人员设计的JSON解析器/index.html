@@ -6,17 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>ZSON--专为测试人员设计的JSON解析器 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="前言现在大家都认可Python在接口测试方面效率比较高，究其原因，可能是Python的请求库功能强大，但Java的HttpClient封装得好的话，也可以一句代码发送请求，还有一点，Java的TestNg我个人认为是一个非常强大的测试框架，Python中的那些测试框架应该没有与之比肩的，但即便始此，Java在接口测试上还是举步维艰，这是因为在请求后对结果的处理，Python天然支持json解析，而">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ZSON--专为测试人员设计的JSON解析器">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/ZSON--专为测试人员设计的JSON解析器/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="前言现在大家都认可Python在接口测试方面效率比较高，究其原因，可能是Python的请求库功能强大，但Java的HttpClient封装得好的话，也可以一句代码发送请求，还有一点，Java的TestNg我个人认为是一个非常强大的测试框架，Python中的那些测试框架应该没有与之比肩的，但即便始此，Java在接口测试上还是举步维艰，这是因为在请求后对结果的处理，Python天然支持json解析，而">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8387968-0f6ebac83e2e4d98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8387968-064b1247653f5677.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8387968-2b797bbec3527321.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/8387968-1907a274003ad0a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-10-31T10:23:52.951Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="ZSON--专为测试人员设计的JSON解析器">
+<meta name="twitter:description" content="前言现在大家都认可Python在接口测试方面效率比较高，究其原因，可能是Python的请求库功能强大，但Java的HttpClient封装得好的话，也可以一句代码发送请求，还有一点，Java的TestNg我个人认为是一个非常强大的测试框架，Python中的那些测试框架应该没有与之比肩的，但即便始此，Java在接口测试上还是举步维艰，这是因为在请求后对结果的处理，Python天然支持json解析，而">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/8387968-0f6ebac83e2e4d98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,37 +154,140 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-ZSON--专为测试人员设计的JSON解析器" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      ZSON--专为测试人员设计的JSON解析器
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/" class="archive-article-date">
+
+        
+        <a href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/" class="archive-article-date">
   	<time datetime="2017-10-31T10:22:58.028Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/">ZSON--专为测试人员设计的JSON解析器</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现在大家都认可Python在接口测试方面效率比较高，究其原因，可能是Python的请求库功能强大，但Java的HttpClient封装得好的话，也可以一句代码发送请求，还有一点，Java的TestNg我个人认为是一个非常强大的测试框架，Python中的那些测试框架应该没有与之比肩的，但即便始此，Java在接口测试上还是举步维艰，这是因为在请求后对结果的处理，Python天然支持json解析，而Java呢？得依靠第三方库，且解析取值得一大片代码，更见鬼的是这一大片代码是毫无复用性可言，更有甚者，在解析时会搞一个pojo文件，更让Python者觉得用Java简直是灾难。</p>
+<p>为了解决测试人员在Java对json解析的困惑，zson就应运而生了。因为我本人做过UI自动化测试，对XPATH有一定的了解，所以zson对json的操作中加入了一个类似于xpath的路径的概念，即利用一个路径来操作json串。如果一个json串有非常复杂的层级关系，如果想获取最里面的某个key的值，正常情况下那就得一层一层的解析进去，非常的繁琐，如果用zson，只需要一句代码，给定一个路径（值得注意的是，也可以是相对路径哦），就可以获取到对应的值，这样可以大大的提高生产力。<a id="more"></a></p>
+<h1 id="zson"><a href="#zson" class="headerlink" title="zson"></a>zson</h1><h4 id="专为测试人员打造的JSON解析器"><a href="#专为测试人员打造的JSON解析器" class="headerlink" title="专为测试人员打造的JSON解析器"></a>专为测试人员打造的JSON解析器</h4><p>当然，有很多很好的JSON解析的JAR包，比如JSONOBJECT,GSON，甚至也有为我们测试人员而打造的JSONPATH，但我还是自已实现了一下（之前也实现过，现在属于重构）。其主要特点是用一个类似于xpath的选择器来获取相应的值。</p>
+<hr>
+<h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>无需层层解析</li>
+<li>根据给定的路径(类XPATH路径)来获取相应的值</li>
+<li>支持相对路径</li>
+<li>支持对json串的增删改查</li>
+</ul>
+<hr>
+<h1 id="作者联系方式"><a href="#作者联系方式" class="headerlink" title="作者联系方式"></a>作者联系方式</h1><p>QQ：408129370<br>GITHUB : <a href="https://github.com/zhangfei19841004/zson" target="_blank" rel="external">https://github.com/zhangfei19841004/zson</a></p>
+<h1 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h1><p>设定一个json串：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;retCode&quot;: &quot;200&quot;,</div><div class="line">    &quot;retMsg&quot;: &quot;success&quot;,</div><div class="line">    &quot;data&quot;: [</div><div class="line">        &#123;</div><div class="line">            &quot;id&quot;: 1,</div><div class="line">            &quot;name&quot;: &quot;test&quot;,</div><div class="line">            &quot;date&quot;: &quot;2017-01-09 13:30:00&quot;</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            &quot;id&quot;: 2,</div><div class="line">            &quot;name&quot;: &quot;test1&quot;,</div><div class="line">            &quot;date&quot;: &quot;2017-01-09 13:40:00&quot;</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如果想要获取以上json串的所有”name”的值，对于正常解析，你得遍历，但对于zson，你只需要这样：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ZsonResult zr = ZSON.parseJson(json);</div><div class="line">List&lt;Object&gt; names = zr.getValues(&quot;//name&quot;);</div></pre></td></tr></table></figure></p>
+<p>我们在进行结果断言时，有时候请求返回的一整个json串作为一个期望值来进行断言，但json串中往往会存在有不固定的值，比如上面json串的”date”，每次都是变化的，这样就不好断言了，于是，在zson中，我们可以把这个date的值进行更改，改成一个固定的值:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ZsonResult zr = ZSON.parseJson(json);</div><div class="line">zr.updateValue(&quot;//date&quot;,&quot;0000-00-00 00:00:00&quot;);</div></pre></td></tr></table></figure></p>
+<p>或者干脆删除这个结点:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ZsonResult zr = ZSON.parseJson(json);</div><div class="line">zr.deleteValue(&quot;//date&quot;);</div></pre></td></tr></table></figure></p>
+<p>以上zson对json串的操作包含了查找，更新，删除。zson还有对json串中增加一个子字符串的操作:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ZsonResult zr = ZSON.parseJson(json);</div><div class="line">zr.addValue(&quot;/data&quot;,2,&quot;&#123;\&quot;id\&quot;:3,\&quot;name\&quot;:\&quot;test2\&quot;,\&quot;date\&quot;:\&quot;2017-01-09 14:30:00\&quot;&#125;&quot;);</div></pre></td></tr></table></figure></p>
+<h1 id="选择器path说明"><a href="#选择器path说明" class="headerlink" title="选择器path说明"></a>选择器path说明</h1><p>示例一:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123;</div><div class="line">        &quot;firstName&quot;: &quot;Eric&quot;,</div><div class="line">        &quot;lastName&quot;: &quot;Clapton&quot;,</div><div class="line">        &quot;instrument&quot;: &quot;guitar&quot;</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        &quot;firstName&quot;: &quot;Sergei&quot;,</div><div class="line">        &quot;lastName&quot;: &quot;Rachmaninoff&quot;,</div><div class="line">        &quot;instrument&quot;: &quot;piano&quot;</div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<blockquote>
+<pre><code>找出第二个firstName: /*[1]/firstName 
+输出:Sergei
+</code></pre><hr>
+<pre><code>找出第一个Map: /*[0]  
+输出:{&quot;firstName&quot;: &quot;Eric&quot;,&quot;lastName&quot;: &quot;Clapton&quot;,&quot;instrument&quot;: &quot;guitar&quot;}
+</code></pre><hr>
+<pre><code>找出所有的firstName: //firstName 
+输出:[&quot;Eric&quot;,&quot;Sergei&quot;]
+</code></pre><hr>
+</blockquote>
+<p>示例二:</p>
+<p><code>{&quot;a&quot;:[&quot;a&quot;],&quot;cb&quot;:{&quot;a&quot;:1},&quot;d&quot;:[&quot;a&quot;,{&quot;a&quot;:[1,2]},{&quot;a&quot;:2},&quot;&quot;],&quot;e&quot;:&quot;b&quot;}</code></p>
+<blockquote>
+<pre><code>路径: /d/*[1]/a 
+输出:[1,2]
+</code></pre><hr>
+<pre><code>路径: /d/*[1]/a/*[0]
+输出:1
+</code></pre></blockquote>
+<hr>
+<h4 id="实现思路"><a href="#实现思路" class="headerlink" title="实现思路"></a>实现思路</h4><p>思想是这样的，以这个JSON串为例(我自已随手写的)：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&#123;&quot;a&quot;:&quot;b&quot;,&quot;cb&quot;:&#123;&quot;a&quot;:1&#125;,&quot;d&quot;:[&quot;a&quot;,&#123;&quot;a&quot;:3&#125;,&#123;&quot;a&quot;:2&#125;,&quot;&quot;],&quot;e&quot;:&quot;b&quot;&#125;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;a&quot;: &quot;b&quot;,</div><div class="line">    &quot;cb&quot;: &#123;</div><div class="line">        &quot;a&quot;: 1</div><div class="line">    &#125;,</div><div class="line">    &quot;d&quot;: [</div><div class="line">        &quot;a&quot;,</div><div class="line">        &#123;</div><div class="line">            &quot;a&quot;: 3</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            &quot;a&quot;: 2</div><div class="line">        &#125;,</div><div class="line">        &quot;&quot;</div><div class="line">    ],</div><div class="line">    &quot;e&quot;: &quot;b&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们在保证只扫描一次字符串的情况下，就把JSON串解析成功。于是，我先定义了一个List: </p>
+<p><code>private List&lt;Object&gt; collections = new ArrayList&lt;Object&gt;();</code></p>
+<p>collections用来存放这个JSON串中所有的LIST与MAP，在扫描时，一旦碰到{或[，就new一个Map或List,然后add到collections中去了：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8387968-0f6ebac83e2e4d98.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="index.png"></p>
+<p>存放进去后，我们需要一个map来记录collections里的list或map的状态，比如是否已经闭合了，是一个list还是一个map,在collections中的index：</p>
+<p><code>private Map&lt;String, Map&lt;String, Integer&gt;&gt; index = new HashMap&lt;String, Map&lt;String, Integer&gt;&gt;();</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8387968-064b1247653f5677.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="index1.png"></p>
+<p>可以看到，这个MAP的key是由1 1.1 1.2 1.1.1这样来组成的，所以，这个key就可以用来表示json的层级结构了，当然我还用了一个list来保存这些key的顺序：</p>
+<p><code>private List&lt;String&gt; level = new ArrayList&lt;String&gt;();</code></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/8387968-2b797bbec3527321.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="index2.png"></p>
+<p>这样一来，数据结构就很清晰了。接下来要做的事，就是在扫描中的一些判断了，保持以下几个点：</p>
+<ol>
+<li><p>碰到[或{就new一个对象，并将对象存放到collections中去</p>
+</li>
+<li><p>碰到’\‘需要转义的，得直接跳过去，并存放到扫描出来的临时变量中去。比如\{就不需要new一个对象</p>
+</li>
+<li><p>碰到”符号，就要打个标记，在下一个”出现之前，把扫描出来的都当成一个字符串放到临时变量中去。</p>
+</li>
+<li><p>碰到:符号，就要开始标记是个map的开始了，并把之后出现的字符串都存放到另一个临时变量中去。</p>
+</li>
+<li><p>碰到,符号，就要开始处理临时变量了，如果是map就把之前存的两个昨时变量，一个作为KEY，一个作为VALUE，都放到collections中对应的map中去，如果是list,则把之前存的第一个临时变量，放到collections对应的list中去。</p>
+</li>
+<li><p>碰到]或}符号，则表示一个list或map被解析完全了，则这时候要去更新index中的对应的list或map的状态了。</p>
+</li>
+</ol>
+<p>解析完了后，所有的数据都在collections index level这三个变量中了，于是，我们只需要定一个取数据的规则就行了，我用的是一种类似于xpath的语法格式来取值的，这时候只需要解析下这个xpath路径就可以得出这个key，然后在collections中拿值就可以了！</p>
+<hr>
+<h4 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h4><p><img src="http://upload-images.jianshu.io/upload_images/8387968-1907a274003ad0a8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="index3.png"></p>
+<blockquote>
+<p>备注：上面的例子中，我们可以看到，类XPATH的路径支持绝对路径和相对路径，用*[]来表示一个list,[]里面放要获取的值在list中的index，比如/*[0]指获取list中的第1个值。用map的key来获取其对应的值!</p>
+</blockquote>
+<hr>
+<h4 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ZsonResult zr = ZSON.parseJson(j); //解析JSON字符串后，得到一个ZsonResult对象</div></pre></td></tr></table></figure>
+<blockquote>
+<p>   zr对象可用的方法:</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">      public boolean isValid();//判断json串是否合法</div><div class="line">   </div><div class="line">public Object getResult();//获取整个结果对象</div><div class="line">   </div><div class="line">public Object getValue(String path);//根据路径获取结果集的第一个值</div><div class="line">   </div><div class="line">public Object getValue();//获取整个结果json字符串</div><div class="line">   </div><div class="line">public List&lt;Object&gt; getValues(String path);//获取符合路径的所有结果集</div><div class="line">   </div><div class="line">public String getString(String path);//根据路径获取结果集的第一个值，并转换为字符串</div><div class="line">   </div><div class="line">public int getInteger(String path);//根据路径获取结果集的第一个值，并转换为Integer</div><div class="line">   </div><div class="line">public long getLong(String path);//根据路径获取结果集的第一个值，并转换为Long</div><div class="line"></div><div class="line">public double getDouble(String path);//根据路径获取结果集的第一个值，并转换为Double</div><div class="line"></div><div class="line">public float getFloat(String path);//根据路径获取结果集的第一个值，并转换为Float</div><div class="line"></div><div class="line">public boolean getBoolean(String path);//根据路径获取结果集的第一个值，并转换为Boolean</div><div class="line"></div><div class="line">public void addValue(String path, Object json);//在路径path添加一个新的json串</div><div class="line">   	</div><div class="line">public void deleteValue(String path);//删除path的所有对象</div><div class="line">   </div><div class="line">public void updateValue(String path, Object json);//更新path的值为&apos;json&apos;</div></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -191,362 +300,116 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/ZSON--专为测试人员设计的JSON解析器/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/31/Webdriver的PageObject改造/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Webdriver的PageObject改造</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#zson"><span class="toc-number">2.</span> <span class="toc-text">zson</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#专为测试人员打造的JSON解析器"><span class="toc-number">2.0.0.1.</span> <span class="toc-text">专为测试人员打造的JSON解析器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-number">2.0.0.2.</span> <span class="toc-text">特点</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#作者联系方式"><span class="toc-number">3.</span> <span class="toc-text">作者联系方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用场景"><span class="toc-number">4.</span> <span class="toc-text">使用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#选择器path说明"><span class="toc-number">5.</span> <span class="toc-text">选择器path说明</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实现思路"><span class="toc-number">5.0.0.1.</span> <span class="toc-text">实现思路</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用方法"><span class="toc-number">5.0.0.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用说明"><span class="toc-number">5.0.0.3.</span> <span class="toc-text">使用说明</span></a></li></ol></li></ol></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -567,8 +430,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

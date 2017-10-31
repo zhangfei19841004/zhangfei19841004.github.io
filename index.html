@@ -150,6 +150,83 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-ZSON--专为测试人员设计的JSON解析器" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/">ZSON--专为测试人员设计的JSON解析器</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/" class="archive-article-date">
+  	<time datetime="2017-10-31T10:22:58.028Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>现在大家都认可Python在接口测试方面效率比较高，究其原因，可能是Python的请求库功能强大，但Java的HttpClient封装得好的话，也可以一句代码发送请求，还有一点，Java的TestNg我个人认为是一个非常强大的测试框架，Python中的那些测试框架应该没有与之比肩的，但即便始此，Java在接口测试上还是举步维艰，这是因为在请求后对结果的处理，Python天然支持json解析，而Java呢？得依靠第三方库，且解析取值得一大片代码，更见鬼的是这一大片代码是毫无复用性可言，更有甚者，在解析时会搞一个pojo文件，更让Python者觉得用Java简直是灾难。</p>
+<p>为了解决测试人员在Java对json解析的困惑，zson就应运而生了。因为我本人做过UI自动化测试，对XPATH有一定的了解，所以zson对json的操作中加入了一个类似于xpath的路径的概念，即利用一个路径来操作json串。如果一个json串有非常复杂的层级关系，如果想获取最里面的某个key的值，正常情况下那就得一层一层的解析进去，非常的繁琐，如果用zson，只需要一句代码，给定一个路径（值得注意的是，也可以是相对路径哦），就可以获取到对应的值，这样可以大大的提高生产力。
+        
+          <a class="article-more-a" href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/ZSON--专为测试人员设计的JSON解析器/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Webdriver的PageObject改造" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -308,6 +385,88 @@
 
 
   
+    <article id="post-7.装饰器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="装饰器模式概述"><a href="#装饰器模式概述" class="headerlink" title="装饰器模式概述"></a>装饰器模式概述</h2><p>尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：</p>
+<ol>
+<li>有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。</li>
+<li>被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。</li>
+<li>装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。</li>
+</ol>
+<p>用代码来实现这个过程：
+        
+          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-6.适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -434,88 +593,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/10/31/8.代理模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-7.装饰器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="装饰器模式概述"><a href="#装饰器模式概述" class="headerlink" title="装饰器模式概述"></a>装饰器模式概述</h2><p>尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：</p>
-<ol>
-<li>有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。</li>
-<li>被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。</li>
-<li>装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。</li>
-</ol>
-<p>用代码来实现这个过程：
-        
-          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/">展开全文 >></a>
         </p>
       
 
@@ -824,88 +901,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/10/31/2.简单工厂模式/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-1.单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是单例模式"><a href="#什么是单例模式" class="headerlink" title="什么是单例模式"></a>什么是单例模式</h2><p>单例模式具有如下的特征：</p>
-<ol>
-<li>单例类有且只能有一个实例。</li>
-<li>单例类必须是自己创建自己的唯一实例。</li>
-<li>单例类必须给所有其他对象提供这一实例。</li>
-</ol>
-<p>总结一句话：单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。
-        
-          <a class="article-more-a" href="/2017/10/31/1.单例模式/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/31/1.单例模式/">展开全文 >></a>
         </p>
       
 
