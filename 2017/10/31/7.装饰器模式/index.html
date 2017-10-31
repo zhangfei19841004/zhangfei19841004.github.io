@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>7.装饰器模式 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="装饰器模式概述尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：  有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。 被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。 装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。  用代码来实现这个过程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="7.装饰器模式">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/7.装饰器模式/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="装饰器模式概述尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：  有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。 被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。 装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。  用代码来实现这个过程">
+<meta property="og:updated_time" content="2017-10-31T02:43:15.790Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="7.装饰器模式">
+<meta name="twitter:description" content="装饰器模式概述尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：  有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。 被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。 装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。  用代码来实现这个过程">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,113 +149,102 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-7.装饰器模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      7.装饰器模式
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="装饰器模式概述"><a href="#装饰器模式概述" class="headerlink" title="装饰器模式概述"></a>装饰器模式概述</h2><p>尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：</p>
+<ol>
+<li>有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。</li>
+<li>被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。</li>
+<li>装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。</li>
+</ol>
+<p>用代码来实现这个过程：<a id="more"></a></p>
+<blockquote>
+<p>先定义好被装饰对象（书）的作用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public interface Book &#123;</div><div class="line"></div><div class="line">    void read();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>新书下发</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class MathBook implements Book &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始学习数学!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class EnglishBook implements Book &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始学习英语!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>开始包装新书：装饰后的对象（包上封皮的书）</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class PackagingBook implements Book &#123;</div><div class="line"></div><div class="line">    private Book book;</div><div class="line"></div><div class="line">    public PackagingBook(Book book) &#123;</div><div class="line">        this.book = book;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void read() &#123;</div><div class="line">        System.out.println(&quot;开始包装!&quot;);</div><div class="line">        book.read();</div><div class="line">        System.out.println(&quot;结束包装!&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<ol>
+<li><code>PackagingBook implements Book</code>表明装饰后的书的作用不变。</li>
+<li><code>public PackagingBook(Book book)</code>该构造器表示被装饰对象是包含在装饰后的对象中的。</li>
+<li><code>book.read();</code>表示真正发挥作用的还是被装饰对象（书）。</li>
+</ol>
+<blockquote>
+<p>包装完后，使用</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">public class Student &#123;</div><div class="line"></div><div class="line">    public void learn()&#123;</div><div class="line">        Book math = new PackagingBook(new MathBook());</div><div class="line">        math.read();</div><div class="line">        Book english = new PackagingBook(new EnglishBook());</div><div class="line">        english.read();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Student s = new Student();</div><div class="line">        s.learn();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">开始包装!</div><div class="line">开始学习数学!</div><div class="line">结束包装!</div><div class="line">开始包装!</div><div class="line">开始学习英语!</div><div class="line">结束包装!</div></pre></td></tr></table></figure>
+<p>看到上面的使用方式，是不是很眼熟？Java的IO的实现全是用的装饰器模式！</p>
+<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在用webdriver做UI时，来看一下官网提供的代码写法，即最原始的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">driver.findElement(By.id(&quot;kw&quot;)).click();</div></pre></td></tr></table></figure>
+<p>现在希望在click时，自动的输出log，但click是WebElement对象的方法，又没有接口，所以我们可以用装饰器模式，将WebElement对象进行装饰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">public class ExtendWebElement &#123;</div><div class="line">     </div><div class="line">    private WebElement element;</div><div class="line"> </div><div class="line">    public void setElement(WebElement element) &#123;</div><div class="line">        this.element = element;</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    public void click()&#123;</div><div class="line">        System.out.println(&quot;click the: &quot;+element.toString());</div><div class="line">        /**</div><div class="line">         * do something</div><div class="line">         */</div><div class="line">        element.click();</div><div class="line">        /**</div><div class="line">         * do something</div><div class="line">         */</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在使用时如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">new ExtendWebElement(driver.findElement(By.id(&quot;kw&quot;))).click();</div></pre></td></tr></table></figure>
+<p>当然以上只是提供了一种思路，调用方法可以再进行封装，至于如何封装，这里先且不表，有兴趣的，可以一起讨论。</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -267,286 +257,125 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/7.装饰器模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/10/31/8.代理模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          8.代理模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/31/5.原型模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">5.原型模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#装饰器模式概述"><span class="toc-number">1.</span> <span class="toc-text">装饰器模式概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试开发应用场景"><span class="toc-number">2.</span> <span class="toc-text">测试开发应用场景</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -567,8 +396,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

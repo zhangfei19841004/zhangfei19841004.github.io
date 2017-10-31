@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>2.简单工厂模式 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="简单工厂模式概述与示例一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如： 1234567891011public class Test &amp;#123;    public void test()&amp;#123;        System.out.println(&amp;quot;this is test&amp;quot;);    &amp;#125;    public static void mai">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2.简单工厂模式">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/2.简单工厂模式/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="简单工厂模式概述与示例一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如： 1234567891011public class Test &amp;#123;    public void test()&amp;#123;        System.out.println(&amp;quot;this is test&amp;quot;);    &amp;#125;    public static void mai">
+<meta property="og:updated_time" content="2017-10-31T02:42:38.371Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="2.简单工厂模式">
+<meta name="twitter:description" content="简单工厂模式概述与示例一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如： 1234567891011public class Test &amp;#123;    public void test()&amp;#123;        System.out.println(&amp;quot;this is test&amp;quot;);    &amp;#125;    public static void mai">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,341 +149,110 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2.简单工厂模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
+    <h1 class="article-title" itemprop="name">
+      2.简单工厂模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
+        
+        <a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
   	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简单工厂模式概述与示例"><a href="#简单工厂模式概述与示例" class="headerlink" title="简单工厂模式概述与示例"></a>简单工厂模式概述与示例</h2><p>一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test t = new Test();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样写大家都会，如果很多地方都要用到Test类的实例，就需要写很多个<code>Test t = new Test();</code>，假如Test类发生更改（比如构造器或者变量产生了变动）,那么你需要将所有用到Test类的地方都更改一遍，维护量太大。如果将<code>new Test();</code>产生实例的放在一个地方管理，纵然Test类再发生更改，只要在这个地方进行相应的修改就行了，”这个地方”就是专门产生Test类实例的，类似于一个工厂，于是，工厂模式就产生了。<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">public class TestFactory &#123;</div><div class="line"></div><div class="line">    public static Test getInstance()&#123;</div><div class="line">        return new Test();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static class Test&#123;</div><div class="line"></div><div class="line">        private Test() &#123;&#125;</div><div class="line"></div><div class="line">        public void test()&#123;</div><div class="line">            System.out.println(&quot;this is test&quot;);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test t = TestFactory.getInstance();</div><div class="line">        t.test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>以上示例中可以看出，当要用到Test类实例时，只需要<code>TestFactory.getInstance();</code>就产生了一个实例，根本不会关心这个实例是如何产生的，也不会关心这个实例进行了哪些初始化，换言之，当你去吃披萨时，你只需要服务员准时把披萨给你端上桌，而不会去关心披萨上的培根是哪个国家生产的，也不会去关心做这个披萨的师傅的年纪有多大。总结：工厂模式就是产生实例的，但不会管是如何产生的。</p>
+<p>以上的示例中，工厂里只有一条生产线（只有一个Test类），这样资源太浪费了，要学会共享嘛，于是我们来建多条生产线，当然在一个工厂里的多条生产线必须要有<br>相同的作用或者同一个目标，你不可能在做披萨的厨房里去养猪吧。</p>
+<blockquote>
+<p>限定生产线的作用域：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">public abstract class TestAbs &#123;</div><div class="line"></div><div class="line">    public abstract void test();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>多条生产线：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">public class Test extends TestAbs&#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line">public class Test1 extends TestAbs&#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test1&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>工厂产生实例：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">public class TestFactory &#123;</div><div class="line"></div><div class="line">    public static TestAbs getInstance(String flag)&#123;</div><div class="line">        if(&quot;test&quot;.equals(flag))&#123;</div><div class="line">            return new Test();</div><div class="line">        &#125;else if(&quot;test1&quot;.equals(flag))&#123;</div><div class="line">            return new Test1();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        TestAbs t = TestFactory.getInstance(&quot;test1&quot;);</div><div class="line">        t.test();</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这就是简单工厂模式的思路过程及实现。</p>
+<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在接口测试中，可能要用到HttpClient，一般情况下，我们需要对三种请求进行处理：</p>
+<ol>
+<li>GET请求</li>
+<li>POST表单请求</li>
+<li>POST BODY请求</li>
+</ol>
+<blockquote>
+<p>如果对这三种请求不理解的，可以自行百度一下，这里不作赘述。</p>
+</blockquote>
+<p>我们来看一下HttpClient的请求怎么做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">public class HttpClientUtil &#123;</div><div class="line"></div><div class="line">    public void get(String url)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpGet httpGet = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpGet = new HttpGet(url);</div><div class="line">            httpGet.setConfig(requestConfig);</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpGet);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpGet!=null)&#123;</div><div class="line">                    httpGet.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void post(String url, Map&lt;String, String&gt; params)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            List&lt;NameValuePair&gt; ps = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">            for (String pKey : params.keySet()) &#123;</div><div class="line">                ps.add(new BasicNameValuePair(pKey, params.get(pKey)));</div><div class="line">            &#125;</div><div class="line">            httpPost.setEntity(new UrlEncodedFormEntity(ps));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpPost!=null)&#123;</div><div class="line">                    httpPost.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public void post(String url, String body)&#123;</div><div class="line">        CloseableHttpClient httpClient = null;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpClient = HttpClients.createDefault();</div><div class="line">            RequestConfig requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            httpPost.setEntity(new StringEntity(body));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            System.out.println(EntityUtils.toString(httpEntity,&quot;utf-8&quot;));</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            try &#123;</div><div class="line">                if(httpPost!=null)&#123;</div><div class="line">                    httpPost.releaseConnection();</div><div class="line">                &#125;</div><div class="line">                if(httpClient!=null)&#123;</div><div class="line">                    httpClient.close();</div><div class="line">                &#125;</div><div class="line">            &#125; catch (IOException e) &#123;</div><div class="line">                e.printStackTrace();</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>以上示例可以看出只需要把HttpGet/HttpPost与请求参数给抽象出来即可：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public abstract class HttpClientAbs &#123;</div><div class="line"></div><div class="line">    protected CloseableHttpClient httpClient;</div><div class="line"></div><div class="line">    protected RequestConfig requestConfig;</div><div class="line"></div><div class="line">    public void close() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (httpClient != null) &#123;</div><div class="line">                httpClient.close();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public HttpClientAbs() &#123;</div><div class="line">        httpClient = HttpClients.createDefault();</div><div class="line">        requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public abstract String execute(String url);</div><div class="line"></div><div class="line">    public abstract &lt;T&gt; HttpClientAbs setParams(T t);</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>再定义HttpGet与HttpPost：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div></pre></td><td class="code"><pre><div class="line">public class HttpClientGet extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpGet httpGet = null;</div><div class="line">        try &#123;</div><div class="line">            httpGet = new HttpGet(url);</div><div class="line">            httpGet.setConfig(requestConfig);</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpGet);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpGet!=null)&#123;</div><div class="line">                httpGet.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostForm extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    private Map&lt;String, String&gt; params;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            List&lt;NameValuePair&gt; ps = new ArrayList&lt;NameValuePair&gt;();</div><div class="line">            for (String pKey : params.keySet()) &#123;</div><div class="line">                ps.add(new BasicNameValuePair(pKey, params.get(pKey)));</div><div class="line">            &#125;</div><div class="line">            httpPost.setEntity(new UrlEncodedFormEntity(ps));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        params = (Map&lt;String, String&gt;) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientPostBody extends HttpClientAbs &#123;</div><div class="line"></div><div class="line">    private String body;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public String execute(String url) &#123;</div><div class="line">        HttpPost httpPost = null;</div><div class="line">        try &#123;</div><div class="line">            httpPost = new HttpPost(url);</div><div class="line">            httpPost.setConfig(requestConfig);</div><div class="line">            httpPost.setEntity(new StringEntity(body));</div><div class="line">            CloseableHttpResponse response = httpClient.execute(httpPost);</div><div class="line">            HttpEntity httpEntity = response.getEntity();</div><div class="line">            return EntityUtils.toString(httpEntity,&quot;utf-8&quot;);</div><div class="line">        &#125; catch (ClientProtocolException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;finally&#123;</div><div class="line">            if(httpPost!=null)&#123;</div><div class="line">                httpPost.releaseConnection();</div><div class="line">            &#125;</div><div class="line">            this.close();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public &lt;T&gt; HttpClientAbs setParams(T t) &#123;</div><div class="line">        body = (String) t;</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>最后再把多条生产线放进工厂中及调用示例：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">public class HttpClientFactory &#123;</div><div class="line"></div><div class="line">    public static HttpClientAbs create(String flag)&#123;</div><div class="line">        if(&quot;get&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientGet();</div><div class="line">        &#125;else if(&quot;postForm&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientPostForm();</div><div class="line">        &#125;else if(&quot;postBody&quot;.equals(flag))&#123;</div><div class="line">            return new HttpClientPostBody();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String response = HttpClientFactory.create(&quot;get&quot;).execute(&quot;http://101.200.48.144:8080/api/v3?username=zf&quot;);</div><div class="line">        System.out.println(response);</div><div class="line">        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();</div><div class="line">        params.put(&quot;username&quot;,&quot;zf&quot;);</div><div class="line">        params.put(&quot;password&quot;,&quot;123&quot;);</div><div class="line">        String res1 = HttpClientFactory.create(&quot;postForm&quot;).setParams(params).execute(&quot;http://101.200.48.144:8080/api/v1&quot;);</div><div class="line">        System.out.println(res1);</div><div class="line">        String res2 = HttpClientFactory.create(&quot;postBody&quot;).setParams(&quot;&#123;\&quot;username\&quot;:\&quot;zf\&quot;&#125;&quot;).execute(&quot;http://101.200.48.144:8080/api/v2&quot;);</div><div class="line">        System.out.println(res2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>HttpClientFactory类我们可以再进行下优化，将create方法中的if给去掉：</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div></pre></td><td class="code"><pre><div class="line">public enum HttpClientRequest &#123;</div><div class="line"></div><div class="line">    GET(HttpClientGet.class),</div><div class="line"></div><div class="line">    POSTFORM(HttpClientPostForm.class),</div><div class="line"></div><div class="line">    POSTBODY(HttpClientPostBody.class);</div><div class="line"></div><div class="line">    private Class&lt;? extends HttpClientAbs&gt; clazz;</div><div class="line"></div><div class="line">    public Class&lt;? extends HttpClientAbs&gt; getClazz() &#123;</div><div class="line">        return clazz;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    private HttpClientRequest(Class&lt;? extends HttpClientAbs&gt; clazz) &#123;</div><div class="line">        this.clazz = clazz;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static HttpClientAbs getHttpClientRequestInstance(HttpClientRequest request)&#123;</div><div class="line">        try &#123;</div><div class="line">            return request.getClazz().newInstance();</div><div class="line">        &#125; catch (InstantiationException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125; catch (IllegalAccessException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">        return null;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class HttpClientFactory &#123;</div><div class="line"></div><div class="line">    public static HttpClientAbs create(HttpClientRequest request)&#123;</div><div class="line">        return HttpClientRequest.getHttpClientRequestInstance(request);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        String response = HttpClientFactory.create(HttpClientRequest.GET).execute(&quot;http://101.200.48.144:8080/api/v3?username=zf&quot;);</div><div class="line">        System.out.println(response);</div><div class="line">        Map&lt;String, String&gt; params = new HashMap&lt;String, String&gt;();</div><div class="line">        params.put(&quot;username&quot;,&quot;zf&quot;);</div><div class="line">        params.put(&quot;password&quot;,&quot;123&quot;);</div><div class="line">        String res1 = HttpClientFactory.create(HttpClientRequest.POSTFORM).setParams(params).execute(&quot;http://101.200.48.144:8080/api/v1&quot;);</div><div class="line">        System.out.println(res1);</div><div class="line">        String res2 = HttpClientFactory.create(HttpClientRequest.POSTBODY).setParams(&quot;&#123;\&quot;username\&quot;:\&quot;zf\&quot;&#125;&quot;).execute(&quot;http://101.200.48.144:8080/api/v2&quot;);</div><div class="line">        System.out.println(res2);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>从main方法中可以看出，原来Java的Http请求也可以写的这么优雅，这就是设计模式的魅力！</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -495,58 +265,125 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/2.简单工厂模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/10/31/3.抽象工厂模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          3.抽象工厂模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/31/1.单例模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">1.单例模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#简单工厂模式概述与示例"><span class="toc-number">1.</span> <span class="toc-text">简单工厂模式概述与示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试开发应用场景"><span class="toc-number">2.</span> <span class="toc-text">测试开发应用场景</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -567,8 +404,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

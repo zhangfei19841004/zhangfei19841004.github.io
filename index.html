@@ -5,13 +5,13 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://zhangfei.link">
   <title>再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="努力让Java在测试领域中存活下去！">
 <meta property="og:type" content="website">
 <meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://zhangfei.link/index.html">
 <meta property="og:site_name" content="再见理想">
 <meta property="og:description" content="努力让Java在测试领域中存活下去！">
 <meta name="twitter:card" content="summary">
@@ -51,20 +51,26 @@
 		  <h1 class="header-author"><a href="">张飞</a></h1>
 		</hgroup>
 		
+		<p class="header-subtitle">测试开发，致力于Java在测试领域存活更久一点！QQ:408129370</p>
+		
 
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/">主页</a></li>
+				<li><a href="/2017/10/30/Java接口测试培训大纲/">主页</a></li>
 	        
-				<li><a href="/categories">categories</a></li>
+				<li><a href="/categories/service">Java测试服务</a></li>
+	        
+				<li><a href="/categories/pattern">测试开发与设计模式</a></li>
+	        
+				<li><a href="/categories/automation">自动化测试</a></li>
+	        
+				<li><a href="/">所有文章</a></li>
 	        
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
     		
-    			
-    			<a q-on="click: openSlider(e, 'aboutme')" href="javascript:void(0)">关于我</a>
     			
             
 		</nav>
@@ -93,7 +99,15 @@
 			  <h1 class="header-author js-header-author">张飞</h1>
 			</hgroup>
 			
+			<p class="header-subtitle"><i class="icon icon-quo-left"></i>测试开发，致力于Java在测试领域存活更久一点！QQ:408129370<i class="icon icon-quo-right"></i></p>
 			
+			
+			
+				
+			
+				
+			
+				
 			
 				
 			
@@ -108,12 +122,18 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 50%">
+				<ul style="width: 70%">
 				
 				
-					<li style="width: 50%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/2017/10/30/Java接口测试培训大纲/">主页</a></li>
 		        
-					<li style="width: 50%"><a href="/categories">categories</a></li>
+					<li style="width: 20%"><a href="/categories/service">Java测试服务</a></li>
+		        
+					<li style="width: 20%"><a href="/categories/pattern">测试开发与设计模式</a></li>
+		        
+					<li style="width: 20%"><a href="/categories/automation">自动化测试</a></li>
+		        
+					<li style="width: 20%"><a href="/">所有文章</a></li>
 		        
 				</ul>
 			</nav>
@@ -130,122 +150,30 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java接口测试培训大纲" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Webdriver的PageObject改造" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/30/Java接口测试培训大纲/">Java接口测试培训大纲</a>
+      <a class="article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
     </h1>
   
 
         
-        <a href="/2017/10/30/Java接口测试培训大纲/" class="archive-article-date">
-  	<time datetime="2017-10-30T07:26:45.933Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-30</time>
+        <a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-java语法基础及数据类型"><a href="#1-java语法基础及数据类型" class="headerlink" title="1. java语法基础及数据类型"></a>1. java语法基础及数据类型</h3><ul>
-<li>java代码规范</li>
-<li>java程序输出”Hello world!”</li>
-<li>for while if的使用规则</li>
-<li>类和变量</li>
-<li>String字符串的基本方法</li>
-<li>基本数据类型</li>
-<li>Numbers类的使用方法</li>
-<li>基本运算符</li>
-</ul>
-<blockquote>
-<p>设计一个加减乘除功能的计算器。比如给定字符串”2+3*4-5”，输出值9。</p>
-</blockquote>
-<h3 id="2-java集合基本使用"><a href="#2-java集合基本使用" class="headerlink" title="2. java集合基本使用"></a>2. java集合基本使用</h3><ul>
-<li>数组基本使用</li>
-<li>list基本使用</li>
-<li>map基本使用</li>
-</ul>
-<blockquote>
-<ul>
-<li>将一个map转成”name=zf&amp;age=18”的字符串</li>
-<li>将字符串”name=zf&amp;age=18”转成map。建议使用字符串扫描，考虑字符串转义的情况，比如”name\=12=zf&amp;age=18”</li>
-<li>参加比赛的有16支球队，将这16支球队随机分为4个小组。使用list与随机数来实现</li>
-</ul>
-</blockquote>
-<h3 id="3-java异常处理"><a href="#3-java异常处理" class="headerlink" title="3. java异常处理"></a>3. java异常处理</h3><ul>
-<li>异常捕获</li>
-<li>java有几种异常类</li>
-<li>java读取txt文件</li>
-<li>java写入txt文件</li>
-<li>java递归读取某个文件夹下的所有文件名</li>
-</ul>
-<blockquote>
-<p>写出一个方法，给定一个路径，判断路径是否是一个文件，如果是文件，则把该文件的绝对路径输入到该文件中，如果是文件夹，则在该文件夹内创建创建一个与文件夹名相同的txt文件，比如如果文件夹名为a,则在a文件夹下创建一个a.txt文件，并在a.txt中输入a.txt的绝对路径。</p>
-</blockquote>
-<h3 id="4-Http概述"><a href="#4-Http概述" class="headerlink" title="4. Http概述"></a>4. Http概述</h3><ul>
-<li>Http基本概念</li>
-<li>Postman的基本使用</li>
-</ul>
-<blockquote>
-<ul>
-<li>在Postman中将url根据环境进行参数化。</li>
-<li>在Postman中用JS构造json格式的请求正文。</li>
-</ul>
-</blockquote>
-<h3 id="5-HttpClient的使用"><a href="#5-HttpClient的使用" class="headerlink" title="5. HttpClient的使用"></a>5. HttpClient的使用</h3><ul>
-<li>HttpURLConnection的使用</li>
-<li>HttpClient的使用</li>
-<li>HttpClient的简单工厂模式的封装</li>
-</ul>
-<blockquote>
-<p>用HttpClient去爬取<code>http://www.cnblogs.com/zhangfei/p/5454682.html</code>中的正文数据，建议使用字符串截取的方式来获取正文数据。</p>
-</blockquote>
-<h3 id="6-TestNg的基本使用"><a href="#6-TestNg的基本使用" class="headerlink" title="6. TestNg的基本使用"></a>6. TestNg的基本使用</h3><ul>
-<li>@Test </li>
-<li>@BeforeMethod @BeforeClass @AfterMethod @AfterClass</li>
-<li>testng.xml运行</li>
-<li>@DataProvider的使用</li>
-<li>@Parameters的使用</li>
-</ul>
-<blockquote>
-<p>了解TestNg中的TestListenerAdapter监听器的使用方法。</p>
-</blockquote>
-<h3 id="7-接口框架"><a href="#7-接口框架" class="headerlink" title="7. 接口框架"></a>7. 接口框架</h3><ul>
-<li>从0开始构建接口框架</li>
-</ul>
-<blockquote>
-<p>复习并掌握课堂中的接口框架代码。</p>
-</blockquote>
-<h3 id="8-接口实战"><a href="#8-接口实战" class="headerlink" title="8. 接口实战"></a>8. 接口实战</h3><ul>
-<li>接口文档</li>
-<li>接口MOCK</li>
-<li>接口特点</li>
-<li>接口用例</li>
-<li>接口监控</li>
-</ul>
-<blockquote>
-<p>掌握接口测试流程及方法并运用到实际项目中去。</p>
-</blockquote>
-<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ul>
-<li>一共8次课，每次课2-3个小时，每周末讲课。</li>
-<li>另会赠送我以前讲的selenium的视频</li>
-</ul>
-<h3 id="收费"><a href="#收费" class="headerlink" title="收费"></a>收费</h3><ul>
-<li>2000元/人</li>
-</ul>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><ul>
-<li>QQ:408129370</li>
-</ul>
-<h3 id="个人作品"><a href="#个人作品" class="headerlink" title="个人作品:"></a>个人作品:</h3><ul>
-<li>博客地址：<a href="http://www.cnblogs.com/zhangfei/p/" target="_blank" rel="external">http://www.cnblogs.com/zhangfei/p/</a></li>
-<li>百度阅读：<a href="https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3" target="_blank" rel="external">https://yuedu.baidu.com/ebook/f6dbb2a2f01dc281e53af0f3</a></li>
-<li>GITHUB : <a href="https://github.com/zhangfei19841004/zson" target="_blank" rel="external">https://github.com/zhangfei19841004/zson</a></li>
-<li>简书博客：<a href="http://www.jianshu.com/u/f2cc6e719af0" target="_blank" rel="external">http://www.jianshu.com/u/f2cc6e719af0</a></li>
-</ul>
-
+        <p>PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：
+        
+          <a class="article-more-a" href="/2017/10/31/Webdriver的PageObject改造/#more">more >></a>
+        
       
 
       
@@ -259,7 +187,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/service//" class="article-tag-list-link color4">Java测试服务</a>
+        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
         		</li>
       		
 		</ul>
@@ -268,7 +196,716 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/30/Java接口测试培训大纲/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/10/31/Webdriver的PageObject改造/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-TestNg数据驱动的数据管理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Java中用TestNg的数据驱动时，数据的管理可能比较麻烦，因为要满足如下几个条件：</p>
+<ol>
+<li>分类归纳</li>
+<li>方便查看及维护</li>
+<li>能够表征数据驱动时每一组数据</li>
+</ol>
+<p>以前介绍过将数据放在xml文件中，但是xml文件还是不方便查看，为了方便查看，还是将数据放在Java类中最好了，IDE可以直接link过去。而jdk1.5之后，Java开始支持enum，enum也就是枚举，它有一特征就是会将每一个枚举常量转变成对象，有几个枚举常量就转变成几个对象，这一特征非常符合数据驱动的特点，于是我们将enum引入进来，把数据都放在enum中。
+        
+          <a class="article-more-a" href="/2017/10/31/TestNg数据驱动的数据管理/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/TestNg数据驱动的数据管理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-6.适配器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="适配器模式概述"><a href="#适配器模式概述" class="headerlink" title="适配器模式概述"></a>适配器模式概述</h2><p>周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public interface CleanClassRoom &#123;</div><div class="line"></div><div class="line">    void cleanBlackboard();</div><div class="line"></div><div class="line">    void sweep();</div><div class="line"></div><div class="line">    void cleanFloor();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>任务明确后，A/B/C三个学生要开始分配任务了，A打扫并拖地区域1，且将黑板的左边部分擦干净，B打扫并拖地区域2，且将黑板的中间部分擦干净，C打扫并拖地区域3，且将黑板的右边部分擦干净。
+        
+          <a class="article-more-a" href="/2017/10/31/6.适配器模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/6.适配器模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-8.代理模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/8.代理模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="代理模式概述"><a href="#代理模式概述" class="headerlink" title="代理模式概述"></a>代理模式概述</h2><p>假如你要想买二手房，你可能会想到去找中介，中介房源多，业务精通，会按照你的需求帮你买到心仪的房子，中介就是代理。在代码中，同样有这样的一种模式，只需要把类交给代理类，就可以实现这个类想要实现的一切，哪怕这个类只是个interface,里面的抽象方法照样可以被代理类按需求来实现及调用，这就是代理模式，所以代理模式中至关重要的一点就是代理类了，在Java中，分为静态代理与动态代理，而动态代理中比较有代表性的是JDK动态代理与cglib动态代理，大家可以自行查查各种代理的优劣势。下面是JDK动态代理的示例。</p>
+<p>JAVA的动态代理，在MYBATIS中应用的很广，其核心就是写一个interface,但不写实现类，然后用动态代理来实例化并执行这个interface中的方法，话不多说，来看一个实现的例子：
+        
+          <a class="article-more-a" href="/2017/10/31/8.代理模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/8.代理模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-7.装饰器模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="装饰器模式概述"><a href="#装饰器模式概述" class="headerlink" title="装饰器模式概述"></a>装饰器模式概述</h2><p>尤记得小时候开学发新书后，如获至宝，舍不得弄上哪怕一点灰尘，回家后第一件事就是为新书包上封皮，装饰好后，书还是原来的书，对书的作用不会产生任何影响。用代码的思维来看待这个现象：</p>
+<ol>
+<li>有两个对象：被装饰对象（书），装饰后的对象（包上封皮的书）。</li>
+<li>被装饰对象（书）是被包含在装饰后的对象（包上封皮的书）中的。</li>
+<li>装饰后书的作用不变。但真正发挥作用的还是被装饰对象（书）。</li>
+</ol>
+<p>用代码来实现这个过程：
+        
+          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/7.装饰器模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-5.原型模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/5.原型模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="原型模式概述"><a href="#原型模式概述" class="headerlink" title="原型模式概述"></a>原型模式概述</h2><p>原型模式就是克隆一个对象，以现有的对象为基础，克隆一个与现有对象一模一样的对象出来。Java里有个clone方法，但是为了安全不允许直接调用，否则在运行时会抛出CloneNotSupportedException异常，要去实现Cloneable接口，只有实现了这个接口的类才可以被拷贝，所以先去实现一下Cloneable接口:
+        
+          <a class="article-more-a" href="/2017/10/31/5.原型模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/5.原型模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-4.Builder 模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Builder模式概述"><a href="#Builder模式概述" class="headerlink" title="Builder模式概述"></a>Builder模式概述</h2><p>可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuilder sb = new StringBuilder();</div><div class="line">sb.append(&quot;a&quot;).append(&quot;b&quot;).append(&quot;c&quot;).append(&quot;d&quot;);</div></pre></td></tr></table></figure>
+<p>其实这种链式调用，就是Builder模式的应用，可以不断的往后面添加，我们来看看append方法的源码：
+        
+          <a class="article-more-a" href="/2017/10/31/4.Builder 模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/4.Builder 模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-3.抽象工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="抽象工厂模式概述"><a href="#抽象工厂模式概述" class="headerlink" title="抽象工厂模式概述"></a>抽象工厂模式概述</h2><p>在讲简单工厂模式时，是一个工厂里有多条生产线，这多条生产线都是有相同的作用或同一个目标，比如这个工厂里有制造发动机和制造轮胎两条生产线，都是为了去装配汽车这一个目标。现在为了加强竞争力，多样化发展，提高生产力，提高产能，老板决定再引进两条生产线，也是制造发动机与制造轮胎的，我们把这四条生产线编上号：engine-01/tire-01/engine-02/tire-02，以前在装配时，只能是engine-01装配tire-01，现在既然产能提高了，那engine-01当然能装配tire-02了，这样才能真正提高生产力嘛，所以这四条生产线必须要能满足交叉装配，你看现在同一批手机，某康在装配时，就可能用的是不同的屏幕，不同的芯片。
+        
+          <a class="article-more-a" href="/2017/10/31/3.抽象工厂模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/3.抽象工厂模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2.简单工厂模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="简单工厂模式概述与示例"><a href="#简单工厂模式概述与示例" class="headerlink" title="简单工厂模式概述与示例"></a>简单工厂模式概述与示例</h2><p>一个工厂，最主要的作用就是生产实体，对应到代码中，就是new，比如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">public class Test &#123;</div><div class="line"></div><div class="line">    public void test()&#123;</div><div class="line">        System.out.println(&quot;this is test&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Test t = new Test();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样写大家都会，如果很多地方都要用到Test类的实例，就需要写很多个<code>Test t = new Test();</code>，假如Test类发生更改（比如构造器或者变量产生了变动）,那么你需要将所有用到Test类的地方都更改一遍，维护量太大。如果将<code>new Test();</code>产生实例的放在一个地方管理，纵然Test类再发生更改，只要在这个地方进行相应的修改就行了，”这个地方”就是专门产生Test类实例的，类似于一个工厂，于是，工厂模式就产生了。
+        
+          <a class="article-more-a" href="/2017/10/31/2.简单工厂模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/2.简单工厂模式/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-1.单例模式" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/1.单例模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="什么是单例模式"><a href="#什么是单例模式" class="headerlink" title="什么是单例模式"></a>什么是单例模式</h2><p>单例模式具有如下的特征：</p>
+<ol>
+<li>单例类有且只能有一个实例。</li>
+<li>单例类必须是自己创建自己的唯一实例。</li>
+<li>单例类必须给所有其他对象提供这一实例。</li>
+</ol>
+<p>总结一句话：单例模式确保某个类只有一个实例，而且自行实例化并向整个系统提供这个实例。
+        
+          <a class="article-more-a" href="/2017/10/31/1.单例模式/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/31/1.单例模式/">展开全文 >></a>
         </p>
       
 
@@ -299,6 +936,10 @@
 
   
   
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
+  
 
 
           </div>
@@ -310,9 +951,6 @@
     	<div class="footer-left">
     		&copy; 2017 张飞
     	</div>
-      	<div class="footer-right">
-      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
-      	</div>
     </div>
   </div>
 </footer>
@@ -345,16 +983,12 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
     
     
       
-      
-      
     
     
 
     <ul style="width: 70%">
     
     
-      
-      <li style="width: 100%" q-on="click: openSlider(e, 'aboutme')"><a href="javascript:void(0)" q-class="active:aboutme">关于我</a></li>
       
         
     </ul>
@@ -364,12 +998,6 @@ getOwnMetadataKeys:function(t){return o(i(t),arguments.length<2?void 0:u(argumen
 
     
 
-    
-    	<section class="tools-section tools-section-me" q-show="aboutme">
-  	  	
-  	  		<div class="aboutme-wrap" id="js-aboutme">测试开发，致力于Java在测试领域存活更久一点！QQ:408129370</div>
-  	  	
-    	</section>
     
   </div>
   

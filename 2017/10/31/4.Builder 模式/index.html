@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>4.Builder模式 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="Builder模式概述可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是: 12StringBuilder sb = new StringBuilder();sb.append(&amp;quot;a&amp;quot;).append(&amp;quot;b&amp;quot;).append(&amp;quot;c&amp;quot;).append(&amp;quot;d&amp;quot;); 其实这种链式调用，就是Builder模式的应">
+<meta property="og:type" content="article">
+<meta property="og:title" content="4.Builder模式">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/4.Builder 模式/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="Builder模式概述可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是: 12StringBuilder sb = new StringBuilder();sb.append(&amp;quot;a&amp;quot;).append(&amp;quot;b&amp;quot;).append(&amp;quot;c&amp;quot;).append(&amp;quot;d&amp;quot;); 其实这种链式调用，就是Builder模式的应">
+<meta property="og:updated_time" content="2017-10-31T02:42:55.309Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="4.Builder模式">
+<meta name="twitter:description" content="Builder模式概述可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是: 12StringBuilder sb = new StringBuilder();sb.append(&amp;quot;a&amp;quot;).append(&amp;quot;b&amp;quot;).append(&amp;quot;c&amp;quot;).append(&amp;quot;d&amp;quot;); 其实这种链式调用，就是Builder模式的应">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,265 +149,73 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-4.Builder 模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
+    <h1 class="article-title" itemprop="name">
+      4.Builder模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
+        
+        <a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
   	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Builder模式概述"><a href="#Builder模式概述" class="headerlink" title="Builder模式概述"></a>Builder模式概述</h2><p>可能我们经常会听到链式调用，在Java中用的最广泛的一个可能就是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">StringBuilder sb = new StringBuilder();</div><div class="line">sb.append(&quot;a&quot;).append(&quot;b&quot;).append(&quot;c&quot;).append(&quot;d&quot;);</div></pre></td></tr></table></figure>
+<p>其实这种链式调用，就是Builder模式的应用，可以不断的往后面添加，我们来看看append方法的源码：<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public StringBuilder append(String str) &#123;</div><div class="line">    super.append(str);</div><div class="line">    return this;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public AbstractStringBuilder append(String str) &#123;</div><div class="line">    if (str == null) str = &quot;null&quot;;</div><div class="line">    int len = str.length();</div><div class="line">    ensureCapacityInternal(count + len);</div><div class="line">    str.getChars(0, len, value, count);</div><div class="line">    count += len;</div><div class="line">    return this;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>顿时豁然开朗，原来Builder模式的精髓就在<code>return this;</code>，只有返回当前对象后，才能接着调用当前对象里的方法。</p>
+<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在Java中，新建一个HashMap的对象并初始化，一般我们会这样做：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Map&lt;String, String&gt; map = new HashMap&lt;String, String&gt;();</div><div class="line">map.put(&quot;a&quot;,&quot;1&quot;);</div><div class="line">map.put(&quot;b&quot;,&quot;2&quot;);</div><div class="line">map.put(&quot;c&quot;,&quot;3&quot;);</div></pre></td></tr></table></figure>
+<p>以上只是一个HashMap，就搞出了4行代码，如果要初始化的数据更多，那代码行数就会越来越多，太难看了，难怪别人会说Java太重。可能这时你会立刻想到链式调用，也就是Builder模式，我们来实现一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">public class MapBuilder&lt;K, V&gt; &#123;</div><div class="line"></div><div class="line">    public Map&lt;K, V&gt; map;</div><div class="line"></div><div class="line">    public MapBuilder() &#123;</div><div class="line">        map = new HashMap&lt;K, V&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public MapBuilder&lt;K, V&gt; put(K k, V v) &#123;</div><div class="line">        map.put(k, v);</div><div class="line">        return this;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public V get(K k)&#123;</div><div class="line">        return map.get(k);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        MapBuilder&lt;String, String&gt; builder = new MapBuilder&lt;String, String&gt;().put(&quot;a&quot;,&quot;1&quot;).put(&quot;b&quot;,&quot;2&quot;).put(&quot;c&quot;,&quot;3&quot;);</div><div class="line">        System.out.println(builder.get(&quot;a&quot;));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码行数由不可预知变成了一行了，这就到了可接受的范围了，再联想到之前介绍过的简单工厂模式，代码再次优化：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">public class MapperBuilder &#123;</div><div class="line"></div><div class="line">    public static &lt;K, V&gt; Builder&lt;K, V&gt; getBuilder()&#123;</div><div class="line">        return new Builder&lt;K, V&gt;();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static class Builder&lt;K, V&gt;&#123;</div><div class="line"></div><div class="line">        public Map&lt;K, V&gt; map;</div><div class="line"></div><div class="line">        private Builder()&#123;</div><div class="line">            map = new HashMap&lt;K, V&gt;();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public Builder&lt;K, V&gt; put(K k, V v)&#123;</div><div class="line">            map.put(k, v);</div><div class="line">            return this;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        public Map&lt;K, V&gt; build()&#123;</div><div class="line">            return map;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        Map&lt;String, String&gt; map = MapperBuilder.&lt;String, String&gt;getBuilder().put(&quot;a&quot;, &quot;a&quot;).put(&quot;b&quot;, &quot;b&quot;).build();</div><div class="line">        System.out.println(map);</div><div class="line"></div><div class="line">        Map&lt;Integer, Integer&gt; map1 = MapperBuilder.&lt;Integer, Integer&gt;getBuilder().put(1, 1).put(2, 2).build();</div><div class="line">        System.out.println(map1);</div><div class="line">        StringBuilder sb = new StringBuilder();</div><div class="line">        sb.append(&quot;a&quot;).append(&quot;b&quot;).append(&quot;c&quot;).append(&quot;d&quot;);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>一小段代码，里面竟然有两种设计模式，所以，代码无处不设计模式！</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -419,134 +228,125 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/4.Builder 模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/10/31/5.原型模式/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          5.原型模式
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/31/3.抽象工厂模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">3.抽象工厂模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Builder模式概述"><span class="toc-number">1.</span> <span class="toc-text">Builder模式概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试开发应用场景"><span class="toc-number">2.</span> <span class="toc-text">测试开发应用场景</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
   
 
 
@@ -567,8 +367,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

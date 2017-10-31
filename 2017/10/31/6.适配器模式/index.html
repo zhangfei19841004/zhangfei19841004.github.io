@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>6.适配器模式 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="适配器模式概述周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来： 123456789public interface CleanClassRoom &amp;#123;    void cleanBlackboard();    void sweep();    void cleanFloor();&amp;#125; 任务明确后，A/B/C三个">
+<meta property="og:type" content="article">
+<meta property="og:title" content="6.适配器模式">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/6.适配器模式/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="适配器模式概述周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来： 123456789public interface CleanClassRoom &amp;#123;    void cleanBlackboard();    void sweep();    void cleanFloor();&amp;#125; 任务明确后，A/B/C三个">
+<meta property="og:updated_time" content="2017-10-31T02:43:10.801Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="6.适配器模式">
+<meta name="twitter:description" content="适配器模式概述周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来： 123456789public interface CleanClassRoom &amp;#123;    void cleanBlackboard();    void sweep();    void cleanFloor();&amp;#125; 任务明确后，A/B/C三个">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,113 +149,84 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-6.适配器模式" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      6.适配器模式
+    </h1>
+  
+
+        
+        <a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
+  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="适配器模式概述"><a href="#适配器模式概述" class="headerlink" title="适配器模式概述"></a>适配器模式概述</h2><p>周五了，教室需要大扫除，轮到了学生A/B/C，老师给他们的任务是扫地，拖地，黑板擦干净，把老师的任务用代码给表示出来：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public interface CleanClassRoom &#123;</div><div class="line"></div><div class="line">    void cleanBlackboard();</div><div class="line"></div><div class="line">    void sweep();</div><div class="line"></div><div class="line">    void cleanFloor();</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>任务明确后，A/B/C三个学生要开始分配任务了，A打扫并拖地区域1，且将黑板的左边部分擦干净，B打扫并拖地区域2，且将黑板的中间部分擦干净，C打扫并拖地区域3，且将黑板的右边部分擦干净。<a id="more"></a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">public class StudentA implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板左边擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板中间擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板右边擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>按照上面的分配，大家遵循这个规则，就可以将教室打扫的干干净净了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        a.cleanBlackboard();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        b.cleanBlackboard();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        c.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">黑板左边擦干净了</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">黑板中间擦干净了</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板右边擦干净了</div></pre></td></tr></table></figure>
+<p>但是在打扫的过程中，班长觉得大家太辛苦了，来帮大家一把，于是班长说：黑板我来擦吧！于是乎，这个规则被打破了，班长也要完成任务了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line">public class ClassmateLeader implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentA implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        CleanClassRoom d = new ClassmateLeader();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        d.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板擦干净了</div></pre></td></tr></table></figure>
+<p>可以看到在StudentA/StudentB/StudentC三个类中，他们的cleanBlackboard方法里没做任何事情，显得有点冗余，但又不能去掉。转变一下思路，我们在班长擦黑板的基础上，再来将任务重新分配，这样每个人就不用去管擦黑板这个事情了：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">public class ClassmateLeader implements CleanClassRoom&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentA extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentB extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域2打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域2拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">public class StudentC extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域3打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域3拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>TeacherCheck类不用更改，且运行结果也相同。</p>
+</blockquote>
+<p>A/B/C三个人都去适应班长，在班长的基础上再去完成任务，这就是适配器模式的思路及实现。当然假如班长是个漂亮女生，而A又暗恋班长，于是A说：班长，擦黑板的活我来干！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public class StudentA extends ClassmateLeader&#123;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanBlackboard() &#123;</div><div class="line">        System.out.println(&quot;黑板被A擦干净了&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void sweep() &#123;</div><div class="line">        System.out.println(&quot;区域1打扫完毕&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    @Override</div><div class="line">    public void cleanFloor() &#123;</div><div class="line">        System.out.println(&quot;区域1拖地完毕&quot;);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">public class TeacherCheck &#123;</div><div class="line"></div><div class="line">    public static void main(String[] args) &#123;</div><div class="line">        CleanClassRoom a = new StudentA();</div><div class="line">        CleanClassRoom b = new StudentB();</div><div class="line">        CleanClassRoom c = new StudentC();</div><div class="line">        a.sweep();</div><div class="line">        a.cleanFloor();</div><div class="line">        b.sweep();</div><div class="line">        b.cleanFloor();</div><div class="line">        c.sweep();</div><div class="line">        c.cleanFloor();</div><div class="line">        a.cleanBlackboard();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">区域1打扫完毕</div><div class="line">区域1拖地完毕</div><div class="line">区域2打扫完毕</div><div class="line">区域2拖地完毕</div><div class="line">区域3打扫完毕</div><div class="line">区域3拖地完毕</div><div class="line">黑板被A擦干净了</div></pre></td></tr></table></figure>
+<p>通过以上的示例可以看出，适配器模式可以有更好的复用性，更好的扩展性。</p>
+<h2 id="测试开发应用场景"><a href="#测试开发应用场景" class="headerlink" title="测试开发应用场景"></a>测试开发应用场景</h2><p>在简单工厂模式中，将HttpClientAbs类改成适配器模式的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">public interface HttpClient &#123;</div><div class="line"></div><div class="line">    &lt;T&gt; HttpClientAbs setParams(T t);</div><div class="line"></div><div class="line">    String execute(String url);</div><div class="line"></div><div class="line">    void close();</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line">public abstract class HttpClientAbs implements HttpClient&#123;</div><div class="line"></div><div class="line">    protected CloseableHttpClient httpClient;</div><div class="line"></div><div class="line">    protected RequestConfig requestConfig;</div><div class="line"></div><div class="line">    public void close() &#123;</div><div class="line">        try &#123;</div><div class="line">            if (httpClient != null) &#123;</div><div class="line">                httpClient.close();</div><div class="line">            &#125;</div><div class="line">        &#125; catch (IOException e) &#123;</div><div class="line">            e.printStackTrace();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    public HttpClientAbs() &#123;</div><div class="line">        httpClient = HttpClients.createDefault();</div><div class="line">        requestConfig = RequestConfig.custom().setSocketTimeout(20000).setConnectTimeout(20000).build();</div><div class="line">    &#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -267,286 +239,125 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/6.适配器模式/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2017/10/31/TestNg数据驱动的数据管理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          TestNg数据驱动的数据管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/10/31/8.代理模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">8.代理模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式概述"><span class="toc-number">1.</span> <span class="toc-text">适配器模式概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#测试开发应用场景"><span class="toc-number">2.</span> <span class="toc-text">测试开发应用场景</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -567,8 +378,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

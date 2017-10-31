@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://zhangfei.link">
-  <title>Archives | 再见理想</title>
+  <title>Webdriver的PageObject改造 | 再见理想</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="努力让Java在测试领域中存活下去！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="再见理想">
-<meta property="og:url" content="http://zhangfei.link/archives/index.html">
+  <meta name="description" content="PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Webdriver的PageObject改造">
+<meta property="og:url" content="http://zhangfei.link/2017/10/31/Webdriver的PageObject改造/index.html">
 <meta property="og:site_name" content="再见理想">
-<meta property="og:description" content="努力让Java在测试领域中存活下去！">
+<meta property="og:description" content="PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：">
+<meta property="og:updated_time" content="2017-10-31T02:37:32.742Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="再见理想">
-<meta name="twitter:description" content="努力让Java在测试领域中存活下去！">
+<meta name="twitter:title" content="Webdriver的PageObject改造">
+<meta name="twitter:description" content="PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：">
   
     <link rel="alternative" href="/atom.xml" title="再见理想" type="application/atom+xml">
   
@@ -148,37 +149,89 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-Webdriver的PageObject改造" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Webdriver的PageObject改造
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
+
+        
+        <a href="/2017/10/31/Webdriver的PageObject改造/" class="archive-article-date">
   	<time datetime="2017-10-31T01:36:18.397Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/Webdriver的PageObject改造/">Webdriver的PageObject改造</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>PageObject中提供了一个@FindBy注解，也非常好用，但由于其是一次性全部初始化所有的WebElement，对于当前还不存在于页面上的Element在初始化时就会报错，为了解决这个问题，自然就不能用这个@FindBy注解了，而我们可以自已去写一个类似的注解来解决这个问题，下面是思路的实现：<a id="more"></a> </p>
+<blockquote>
+<p>自定义一个@FindBy注解</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">@Retention(RetentionPolicy.RUNTIME)</div><div class="line">@Target(&#123; ElementType.FIELD &#125;)</div><div class="line">public @interface FindBy &#123;</div><div class="line">	</div><div class="line">	String name();</div><div class="line">	</div><div class="line">	int age();</div><div class="line">	</div><div class="line">	int lazy() default 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>定义一个TestInfo类来模拟WebElement类</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line">public class TestInfo &#123;</div><div class="line">	</div><div class="line">	private String name;</div><div class="line">	</div><div class="line">	private int age;</div><div class="line"></div><div class="line">	public String getName() &#123;</div><div class="line">		return name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setName(String name) &#123;</div><div class="line">		this.name = name;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public int getAge() &#123;</div><div class="line">		return age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	public void setAge(int age) &#123;</div><div class="line">		this.age = age;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	public String toString() &#123;</div><div class="line">		return &quot;TestInfo [name=&quot; + name + &quot;, age=&quot; + age + &quot;]&quot;;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>解析@FindBy注解</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">public class PageUtil &#123;</div><div class="line">	</div><div class="line">	private static void initialLazyInfo(Object obj, int lazy) &#123;</div><div class="line">		try&#123;</div><div class="line">			Field[] fields = obj.getClass().getDeclaredFields();</div><div class="line">			for (Field field : fields) &#123;</div><div class="line">				if(field.isAnnotationPresent(FindBy.class) &amp;&amp; field.getType().equals(TestInfo.class))&#123;</div><div class="line">					FindBy findBy = field.getAnnotation(FindBy.class);</div><div class="line">					if(findBy.lazy()==lazy)&#123;</div><div class="line">						TestInfo temp = new TestInfo();</div><div class="line">						temp.setName(findBy.name());</div><div class="line">						temp.setAge(findBy.age());</div><div class="line">						field.setAccessible(true);</div><div class="line">						field.set(obj, temp);</div><div class="line">					&#125;</div><div class="line">				&#125;</div><div class="line">			&#125;</div><div class="line">		&#125;catch(Exception e)&#123;</div><div class="line">			e.printStackTrace();</div><div class="line">		&#125;</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void initialLazy(Object obj)&#123;</div><div class="line">		PageUtil.initialLazyInfo(obj, 0);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void initialLazy(Object obj, int lazy)&#123;</div><div class="line">		PageUtil.initialLazyInfo(obj, lazy);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>使用方式</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">public class DemoPage &#123;</div><div class="line">	</div><div class="line">	public DemoPage() &#123;</div><div class="line">		PageUtil.initialLazy(this);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@FindBy(name=&quot;zf1&quot;, age=1)</div><div class="line">	private TestInfo info1;</div><div class="line">	</div><div class="line">	@FindBy(name=&quot;zf2&quot;, age=2, lazy=1)</div><div class="line">	private TestInfo info2;</div><div class="line">	</div><div class="line">	public void test()&#123;</div><div class="line">		System.out.println(&quot;info1 is: &quot; + info1);</div><div class="line">		System.out.println(&quot;info2 is: &quot; + info2);</div><div class="line">		PageUtil.initialLazy(this, 1);</div><div class="line">		System.out.println(&quot;info2 is: &quot; + info2);</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">	public static void main(String[] args) &#123;</div><div class="line">		DemoPage dp = new DemoPage();</div><div class="line">		dp.test();</div><div class="line">	&#125;</div><div class="line">	</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>运行结果</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">info1 is: TestInfo [name=zf1, age=1]</div><div class="line">info2 is: null</div><div class="line">info2 is: TestInfo [name=zf2, age=2]</div></pre></td></tr></table></figure>
+<blockquote>
+<p>说明</p>
+</blockquote>
+<ul>
+<li>将TestInfo初始化进行了分层次的初始化</li>
+<li>在需要用到的地方用<code>PageUtil.initialLazy(this, int);</code>进行初始化</li>
+</ul>
 
-        <div class="article-info info-on-right">
-          
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -191,362 +244,116 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://zhangfei.link/2017/10/31/Webdriver的PageObject改造/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/TestNg数据驱动的数据管理/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.393Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/31/TestNg数据驱动的数据管理/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">TestNg数据驱动的数据管理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/TestNg数据驱动的数据管理/">TestNg数据驱动的数据管理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/automation//" class="article-tag-list-link color1">自动化测试</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/6.适配器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/6.适配器模式/">6.适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/8.代理模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/8.代理模式/">8.代理模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/7.装饰器模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.366Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/7.装饰器模式/">7.装饰器模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/5.原型模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.353Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/5.原型模式/">5.原型模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/4.Builder 模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.336Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/4.Builder 模式/">4.Builder模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/3.抽象工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.333Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/3.抽象工厂模式/">3.抽象工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/2.简单工厂模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.316Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/2.简单工厂模式/">2.简单工厂模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/10/31/1.单例模式/" class="archive-article-date">
-  	<time datetime="2017-10-31T01:36:18.285Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-10-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/10/31/1.单例模式/">1.单例模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/pattern//" class="article-tag-list-link color5">测试开发与设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -567,8 +374,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
